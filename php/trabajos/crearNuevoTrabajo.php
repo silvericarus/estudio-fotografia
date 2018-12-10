@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Crear trabajo | Estudio de Fotografía</title>
+	<link rel="icon" href="../../img/logo.png" type="image/png" sizes="513x414">
+	<link rel="stylesheet" href="../../css/main.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+</head>
+<body>
+	<nav>
+		<?php 
+			include '../conectarServidor.php';
+			menu("trabajos");
+		?>
+	</nav>
+	<div class="form">
+		<?php 
+			$conector = conectarServer();
+			/**
+			* Se obtiene el siguiente código 
+			* que se le va a asignar automáticamente 
+			* al nuevo trabajo que crearás.
+			*/
+				
+			$consulta = "SELECT AUTO_INCREMENT from information_schema.TABLES WHERE TABLE_SCHEMA = \"estudio\" and TABLE_NAME = \"trabajos\";";
+			$consulta2 = "SELECT id,nombre from clientes;";
+
+			$datos = mysqli_query($conector,$consulta);
+			$resultado = mysqli_fetch_array($datos,MYSQLI_ASSOC);
+
+			$datos2 = mysqli_query($conector,$consulta2);
+			$resultado2 = mysqli_fetch_array($datos2,MYSQLI_ASSOC);
+
+			echo "<form action=\"crearTrabajo.php\" method=\"post\" enctype=\"multipart/form-data\"><input type='hidden' name='t' value='$resultado[AUTO_INCREMENT]'>";
+
+			echo "<span class=\"campo\"><label for=\"codigo\">Código</label><input type=\"text\" name=\"codigo\" value=\"$resultado[AUTO_INCREMENT]\" disabled></span><br>";
+			mysqli_close($conector);
+			?>
+			<span class="campo"><label for="titulo">Título</label><input type="text" name="titulo"></span><br>
+			<span class="campo"><label for="descripcion">Descripción</label><textarea name="descripcion"></textarea></span><br>
+			<span class="campo"><label for="precio">Precio</label><input type="text" name="precio"></textarea></span><br>
+			<span class="campo"><label for="id_cliente">Cliente</label><select name="id_cliente">
+				<?php 
+					while(!is_null($resultado2)){
+						echo "<option value=\"$resultado2[id]\">$resultado2[nombre]</option>";
+						$resultado2 = mysqli_fetch_array($datos2,MYSQLI_ASSOC);
+					}
+				?>
+			</select></span><br>
+			<span class="campo"><label for="imagen">Archivo</label><input type="file" name="imagen"></span><br>
+			
+			<span class="campo"><input type="submit" value="Crear"></span>
+		</form>
+	</div>
+</body>
+</html>
