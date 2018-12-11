@@ -20,7 +20,7 @@
 		<?php 
 			include 'php/conectarServidor.php';
 			/**
-			 * Se llama a la función que crea el menú con / como parámetro 'ruta'.
+			 * Se llama a la función que crea el menú con / como parámetro 'ruta'
 			 */
 			menu("/");
 		?>
