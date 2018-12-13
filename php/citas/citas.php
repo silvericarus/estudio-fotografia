@@ -54,7 +54,7 @@
 
 				$maxmes = date("t",mktime(0,0,0,$mes,1,$anio));
 
-				$consulta = "SELECT id,fecha from citas where fecha <= '$anio-$mes-$maxmes' and fecha >= '$anio-$mes-01';";
+				$consulta = "SELECT id,fecha from citas where fecha <= '$anio-$mes-$maxmes' and fecha >= '$anio-$mes-01' order by fecha asc;";
 
 				$datos = mysqli_query($conector,$consulta);
 
