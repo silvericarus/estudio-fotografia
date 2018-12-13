@@ -39,7 +39,7 @@
 
 			$archivo = rand(0,sizeof($files)-1);
 
-			echo "<img src='./img/trabajos/$files[$archivo]' alt='Trabajo aleatorio' width='500px'><br>";
+			echo "<img src='./img/trabajos/$files[$archivo]' alt='Trabajo aleatorio' width='500px' id='imgspan'><br>";
 
 			$currenttimestamp = date("Y-m-d");
 
@@ -51,7 +51,7 @@
 			$resultado = mysqli_fetch_array($datos,MYSQLI_ASSOC);
 
 			while (!is_null($resultado)) {
-				echo "<div class='noticiap'><img src='./img/noticias/$resultado[imagen]' alt='$resultado[titular]' width='250px'><br><b>$resultado[titular]</b><form action='php/noticias/verNoticia.php' method='post'>
+				echo "<div class='noticiap'><img src='./img/noticias/$resultado[imagen]' alt='$resultado[titular]' width='250px'><br>$resultado[titular]<form action='php/noticias/verNoticia.php' method='post'>
 				<input type='hidden' name='n' value='$resultado[id]'>
 		<input type='submit' name='verNoticia' value='Ver' class='botonEditar'>
 	</form></div>";
