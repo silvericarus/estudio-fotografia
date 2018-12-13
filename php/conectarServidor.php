@@ -109,7 +109,7 @@
 	function mapaweb($ubicacion){
 		if ($ubicacion=="/") {
 			echo "<div class='mapaweb'>
-    	<div style='background-color:rgba(189, 154, 108, 0.9);width: 379px;'>
+    	<div style='background-color:#494949aa;width: 379px;'>
     		<figure><img src='img/mapaweb.png' alt='Mapa Web' width='300px'><figcaption>Esquema de la web. Las líneas representan los enlaces entre cada página, los puntos.</figcaption></figure>
     		<ul>
     			<li>Clientes: Página para visualizar los clientes.</li>

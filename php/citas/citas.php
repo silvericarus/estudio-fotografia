@@ -69,7 +69,7 @@
 						}else{
 							$fechacita = explode("-",$resultado["fecha"]);
 						if($dia==$fechacita[2]){
-							echo "<td bgcolor=\"#E13E3E\"><div>$dia<form action=\"verCita.php\" method=\"get\">
+							echo "<td bgcolor=\"#faf6e9\" style='color:black'><div>$dia<form action=\"verCita.php\" method=\"get\">
 							<input type='hidden' name='fecha' value='$resultado[fecha]'>
 			<input type=\"submit\" name=\"verCita\" value=\"Ver citas\" class=\"botonEditar\">
 		</form></div></td>";
@@ -87,7 +87,7 @@
 						echo "<tr>";
 					}
 					if($dia==$fechacita[2]){
-						echo "<td bgcolor=\"#E13E3E\"><div>$dia<form action=\"verCita.php\" method=\"get\">
+						echo "<td bgcolor=\"#faf6e9\" style='color:black'><div>$dia<form action=\"verCita.php\" method=\"get\">
 							<input type='hidden' name='fecha' value='$resultado[fecha]'>
 			<input type=\"submit\" name=\"verCita\" value=\"Ver citas\" class=\"botonEditar\">
 		</form></div></td>";
