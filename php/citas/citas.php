@@ -54,21 +54,20 @@
 
 				$maxmes = date("t",mktime(0,0,0,$mes,1,$anio));
 
-				$consulta = "SELECT id,fecha from citas where fecha <= '$anio-$mes-$maxmes' and fecha >= '$anio-$mes-01' order by fecha asc;";
+				/*$consulta = "SELECT id,fecha from citas where fecha <= '$anio-$mes-$maxmes' and fecha >= '$anio-$mes-01' order by fecha asc;";
 
 				$datos = mysqli_query($conector,$consulta);
 
 				$resultado = mysqli_fetch_array($datos,MYSQLI_ASSOC);
-				$numrows = mysqli_num_rows($datos);
+				$numrows = mysqli_num_rows($datos);*/
 
 				echo "<table><tr><caption>$mes/$anio</caption></tr><tr>";
-				if ($numrows > 0) {
 					for ($i=1; $i <= 7; $i++) { 
 						if($i < $empiezames){
 							echo "<td style='width:68px;border:none;'><div><p></p></div></td>";
 						}else{
-							$fechacita = explode("-",$resultado["fecha"]);
-						if($dia==$fechacita[2]){
+							//$fechacita = explode("-",$resultado["fecha"]);
+							if(busca_citas('$anio-$mes-$dia')){
 							echo "<td bgcolor=\"#faf6e9\" style='color:black'><div>$dia<form action=\"verCita.php\" method=\"get\">
 							<input type='hidden' name='fecha' value='$resultado[fecha]'>
 			<input type=\"submit\" name=\"verCita\" value=\"Ver citas\" class=\"botonEditar\">
@@ -79,14 +78,13 @@
 						$dia++;
 						$cont_dia++;
 					}
-				}
 				echo "</tr>";
 				$cont_dia = 0;
 				while($dia <= $maxmes){
 					if($cont_dia == 0){
 						echo "<tr>";
 					}
-					if($dia==$fechacita[2]){
+					if(busca_citas('$anio-$mes-$dia')){
 						echo "<td bgcolor=\"#faf6e9\" style='color:black'><div>$dia<form action=\"verCita.php\" method=\"get\">
 							<input type='hidden' name='fecha' value='$resultado[fecha]'>
 			<input type=\"submit\" name=\"verCita\" value=\"Ver citas\" class=\"botonEditar\">
