@@ -45,7 +45,8 @@
 
 					$archivo = rand(0,sizeof($files)-1);
 
-					echo "<img src='./img/trabajos/$files[$archivo]' alt='Trabajo aleatorio' width='500px'><br>";
+
+			echo "<img src='./img/trabajos/$files[$archivo]' alt='Trabajo aleatorio' width='500px' id='imgspan'><br>";
 
 					$currenttimestamp = date("Y-m-d");
 

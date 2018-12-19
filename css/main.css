@@ -1,4 +1,6 @@
 /*Inicio clientes.php*/
+@import url('https://fonts.googleapis.com/css?family=Amiri|Roboto');
+
 #searchbar{
 	box-shadow: 2px 2px 5px;
     position: absolute;
@@ -15,6 +17,7 @@
     margin-top: 110px;
     background-color: #494949;
     color: #faf6e9; 
+    font-family: "Amiri",serif;
 }
 
 .content>table{
@@ -74,6 +77,7 @@ body{
     text-align: center;
     padding: 16px;
     text-decoration: none;
+    font-family: "Roboto",sans-serif;
 }
 
 #navbar>ul>li>a:hover{
@@ -119,6 +123,7 @@ body{
 }
 .mensaje span{
 	background-color: #494949;
+  font-family: "Roboto",sans-serif;
 }
 .correcto{
 	color:#27AA15;
@@ -159,6 +164,7 @@ body{
   text-decoration: none;
   color: black;
   font-weight: bold;
+  font-family: 'Roboto', sans-serif;
   z-index: 1;
   font-size: 14px;
   padding: 10px 40px 10px 20px;
@@ -253,7 +259,7 @@ button[disabled="false"]:hover .next {
   width:70%;
   margin-left:auto;
   margin-right: auto;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
   background-color: #494949;
   border-radius: 5px;
   box-shadow: 5px 5px 10px 3px rgba(0,0,0,0.69);
@@ -283,4 +289,12 @@ button[disabled="false"]:hover .next {
   width: 99%;
   margin-top: 5px;
   background-color: #494949;
+}
+
+#imgspan{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
