@@ -43,10 +43,72 @@
 
 					$files = array_slice(scandir('./img/trabajos'), 2);
 
-					$archivo = rand(0,sizeof($files)-1);
+					$archivo1 = rand(0,sizeof($files)-1);
+					$archivo2 = rand(0,sizeof($files)-1);
+					while($archivo2==$archivo1){
+						$archivo2 = rand(0,sizeof($files)-1);
+					}
+					$archivo3 = rand(0,sizeof($files)-1);
+					while($archivo3==$archivo2||$archivo3==$archivo1){
+						$archivo3 = rand(0,sizeof($files)-1);
+					}
 
 
-			echo "<img src='./img/trabajos/$files[$archivo]' alt='Trabajo aleatorio' width='500px' id='imgspan'><br>";
+					$id1 = archivo_id($files[$archivo1]);
+					$id2 = archivo_id($files[$archivo2]);
+					$id3 = archivo_id($files[$archivo3]);
+
+					$con1 = "SELECT titulo,descripcion from trabajos where id = $id1";
+					$con2 = "SELECT titulo,descripcion from trabajos where id = $id2";
+					$con3 = "SELECT titulo,descripcion from trabajos where id = $id3";
+
+					$datos1 = mysqli_query($conector,$con1);
+					$resultado1 = mysqli_fetch_array($datos1,MYSQLI_ASSOC);
+
+					$datos2 = mysqli_query($conector,$con2);
+					$resultado2 = mysqli_fetch_array($datos2,MYSQLI_ASSOC);
+
+					$datos3 = mysqli_query($conector,$con3);
+					$resultado3 = mysqli_fetch_array($datos3,MYSQLI_ASSOC);
+
+			echo "<div id='carousel' class='carousel slide' data-ride='carousel'>
+  <ol class='carousel-indicators'>
+    <li data-target='#carousel' data-slide-to='0' class='active'></li>
+    <li data-target='#carousel' data-slide-to='1'></li>
+    <li data-target='#carousel' data-slide-to='2'></li>
+  </ol>
+  <div class='carousel-inner'>
+    <div class='carousel-item active'>
+      	<img class='d-block w-100 p-3' src='./img/trabajos/$files[$archivo1]' alt='First slide' height='700px'>
+      	<div class='carousel-caption d-none d-md-block caption'>
+    		<h5>$resultado1[titulo]</h5>
+    		<p>$resultado1[descripcion]</p>
+  		</div>
+    </div>
+    <div class='carousel-item'>
+      	<img class='d-block w-100 p-3' src='./img/trabajos/$files[$archivo2]' alt='Second slide' height='700px'>
+      	<div class='carousel-caption d-none d-md-block caption'>
+    		<h5>$resultado2[titulo]</h5>
+    		<p>$resultado2[descripcion]</p>
+  		</div>
+    </div>
+    <div class='carousel-item'>
+      	<img class='d-block w-100 p-3' src='./img/trabajos/$files[$archivo3]' alt='Third slide' height='700px'>
+      	<div class='carousel-caption d-none d-md-block caption'>
+    		<h5>$resultado3[titulo]</h5>
+    		<p>$resultado3[descripcion]</p>
+  		</div>
+    </div>
+  </div>
+  <a class='carousel-control-prev' href='#carousel' role='button' data-slide='prev'>
+    <span class='carousel-control-prev-icon bg-dark' aria-hidden='true'></span>
+    <span class='sr-only'>Previous</span>
+  </a>
+  <a class='carousel-control-next' href='#carousel' role='button' data-slide='next'>
+    <span class='carousel-control-next-icon bg-dark' aria-hidden='true'></span>
+    <span class='sr-only'>Next</span>
+  </a>
+</div><br>";
 
 					$currenttimestamp = date("Y-m-d");
 
@@ -81,4 +143,7 @@
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script type="text/javascript">
+	$(".carousel").carousel(5000);
+</script>
 </html>
