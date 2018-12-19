@@ -298,3 +298,15 @@ button[disabled="false"]:hover .next {
   margin-top: 20px;
   margin-bottom: 20px;
 }
+
+.caption{
+  background-color: #302e2eaa;
+  color: #ece8d9;
+  font-family: 'Roboto',sans-serif;
+  font-size: small;
+  border-radius: 5px;
+  border-style: outset;
+  padding: 5px;
+  margin: 5px;
+  margin-bottom: auto;
+}

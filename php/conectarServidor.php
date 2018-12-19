@@ -210,4 +210,10 @@
 		else
 			return false;
 	}
+
+	function archivo_id($archivo){
+		$nombrearchivo = explode(".",$archivo);
+
+		return $nombrearchivo[0];
+	}
 ?>
