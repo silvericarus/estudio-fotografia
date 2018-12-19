@@ -16,49 +16,57 @@
 	<link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-	<nav>
-		<?php 
-			include 'php/conectarServidor.php';
-			/**
-			 * Se llama a la función que crea el menú con / como parámetro 'ruta'
-			 */
-			menu("/");
-		?>
-	</nav>
+	<div class="container-fluid">
+		<div class="row">
+			<nav>
+				<?php 
+					include 'php/conectarServidor.php';
+					/**
+					 * Se llama a la función que crea el menú con / como parámetro 'ruta'
+					 */
+					menu("/");
+				?>
+			</nav>
+		</div>
+	</div>
 	<button title="Ir abajo" class="scrolldown">
         <i class="fas fa-chevron-down"></i>
     </button> 
     <?php 
     	mapaweb("/");
      ?>
-	<div class="content">
-		<?php 
-			$conector = conectarServer();
+    <div class="container">
+    	<div class="row">
+			<div class="col-12 offset-3 content">
+				<?php 
+					$conector = conectarServer();
 
-			$files = array_slice(scandir('./img/trabajos'), 2);
+					$files = array_slice(scandir('./img/trabajos'), 2);
 
-			$archivo = rand(0,sizeof($files)-1);
+					$archivo = rand(0,sizeof($files)-1);
 
-			echo "<img src='./img/trabajos/$files[$archivo]' alt='Trabajo aleatorio' width='500px'><br>";
+					echo "<img src='./img/trabajos/$files[$archivo]' alt='Trabajo aleatorio' width='500px'><br>";
 
-			$currenttimestamp = date("Y-m-d");
+					$currenttimestamp = date("Y-m-d");
 
-			$consulta = "SELECT id,imagen,titular from noticias where fecha <= '$currenttimestamp'  order by fecha desc limit 0,3";
+					$consulta = "SELECT id,imagen,titular from noticias where fecha <= '$currenttimestamp'  order by fecha desc limit 0,3";
 
-			$datos = mysqli_query($conector,$consulta);
+					$datos = mysqli_query($conector,$consulta);
 
 
-			$resultado = mysqli_fetch_array($datos,MYSQLI_ASSOC);
+					$resultado = mysqli_fetch_array($datos,MYSQLI_ASSOC);
 
-			while (!is_null($resultado)) {
-				echo "<div class='noticiap'><img src='./img/noticias/$resultado[imagen]' alt='$resultado[titular]' width='250px'><br><b>$resultado[titular]</b><form action='php/noticias/verNoticia.php' method='post'>
-				<input type='hidden' name='n' value='$resultado[id]'>
-		<input type='submit' name='verNoticia' value='Ver' class='botonEditar'>
-	</form></div>";
-				$resultado = mysqli_fetch_array($datos,MYSQLI_ASSOC);
-			}
-			mysqli_close($conector);
-		?>
+					while (!is_null($resultado)) {
+						echo "<div class='noticiap card'><img class='card-img-top' src='./img/noticias/$resultado[imagen]' alt='$resultado[titular]' width='250px'><div class='card-body'>$resultado[titular]<form action='php/noticias/verNoticia.php' method='post'>
+						<input type='hidden' name='n' value='$resultado[id]'>
+				<input type='submit' name='verNoticia' value='Ver' class=' btn btn-light botonEditar'>
+			</form></div></div>";
+						$resultado = mysqli_fetch_array($datos,MYSQLI_ASSOC);
+					}
+					mysqli_close($conector);
+				?>
+			</div>
+		</div>
 	</div>
 	<?php 
 		contextmenu('/');

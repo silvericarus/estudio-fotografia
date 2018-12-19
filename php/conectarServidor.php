@@ -198,4 +198,16 @@
 		mysqli_close($conector);
 		return true;
 	}
+
+	function busca_citas ($fecha)
+	{
+		$cone = conectarServer();
+		$consulta = "select id_cliente from citas where fecha = '$fecha'";
+		$datos = mysqli_query($cone, $consulta);
+
+		if(mysqli_num_rows($datos)>0)
+			return true;
+		else
+			return false;
+	}
 ?>
