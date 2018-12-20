@@ -54,29 +54,26 @@
 
 				$maxmes = date("t",mktime(0,0,0,$mes,1,$anio));
 
-				/*$consulta = "SELECT id,fecha from citas where fecha <= '$anio-$mes-$maxmes' and fecha >= '$anio-$mes-01' order by fecha asc;";
-
-				$datos = mysqli_query($conector,$consulta);
-
-				$resultado = mysqli_fetch_array($datos,MYSQLI_ASSOC);
-				$numrows = mysqli_num_rows($datos);*/
 
 				echo "<table><tr><caption>$mes/$anio</caption></tr><tr>";
 					for ($i=1; $i <= 7; $i++) { 
 						if($i < $empiezames){
+
 							echo "<td style='width:68px;border:none;'><div><p></p></div></td>";
 						}else{
-							//$fechacita = explode("-",$resultado["fecha"]);
-							if(busca_citas('$anio-$mes-$dia')){
-							echo "<td bgcolor=\"#faf6e9\" style='color:black'><div>$dia<form action=\"verCita.php\" method=\"get\">
-							<input type='hidden' name='fecha' value='$resultado[fecha]'>
-			<input type=\"submit\" name=\"verCita\" value=\"Ver citas\" class=\"botonEditar\">
-		</form></div></td>";
-						}else{
-							echo "<td style='width:68px;'><div>$dia<p></p></div></td>";
+							if(busca_citas("$anio-$mes-$dia")){
+								echo "<td bgcolor=\"#faf6e9\" style='color:black'><div>$dia
+										<form action=\"verCita.php\" method=\"get\">	
+											<input type='hidden' name='fecha' value='$anio-$mes-$dia'>
+											<input type=\"submit\" name=\"verCita\" value=\"Ver citas\" class=\"botonEditar\">
+										</form></div>
+									</td>";
+							}else{
+								echo "<td style='width:68px;'><div>$dia<p></p></div></td>";
+							}
+							$dia++;
+							$cont_dia++;
 						}
-						$dia++;
-						$cont_dia++;
 					}
 				echo "</tr>";
 				$cont_dia = 0;
@@ -84,9 +81,9 @@
 					if($cont_dia == 0){
 						echo "<tr>";
 					}
-					if(busca_citas('$anio-$mes-$dia')){
+					if(busca_citas("$anio-$mes-$dia")){
 						echo "<td bgcolor=\"#faf6e9\" style='color:black'><div>$dia<form action=\"verCita.php\" method=\"get\">
-							<input type='hidden' name='fecha' value='$resultado[fecha]'>
+							<input type='hidden' name='fecha' value='$anio-$mes-$dia'>
 			<input type=\"submit\" name=\"verCita\" value=\"Ver citas\" class=\"botonEditar\">
 		</form></div></td>";
 					}else{
@@ -101,7 +98,7 @@
 				}
 				echo "</tr>";
 				echo "</table>";
-				}
+				
 
 				echo "<form action='citas.php' method='get'>
 			<label for='m'>Mes</label><input type='number' name='m' min='01' max='12' required='required' value='$mes'><br>

@@ -31,7 +31,7 @@
 			 * fecha.
 			 */
 			if(!isset($_GET["c"])){
-				$fecha = convertirFecha($_GET["fecha"],true);
+				$fecha = $_GET["fecha"];
 				$consulta = "SELECT ci.id,ci.fecha,ci.hora,ci.motivo,ci.lugar,c.nombre,c.telefono1 from citas ci,clientes c where ci.id_cliente = c.id and ci.fecha = '$fecha' order by ci.hora asc;";
 			}else{
 				$consulta = "SELECT ci.id,ci.fecha,ci.hora,ci.motivo,ci.lugar,c.nombre,c.telefono1 from citas ci,clientes c where ci.id_cliente = c.id and ci.fecha = '$_GET[fecha]' and ci.id = $_GET[c];";
@@ -40,9 +40,9 @@
 
 			$datos = mysqli_query($conector,$consulta);
 
+
 			$resultado = mysqli_fetch_array($datos,MYSQLI_ASSOC);
 
-			echo ".".$resultado["fecha"];
 
 			$fechacita = explode("-",$resultado["fecha"]);
 
