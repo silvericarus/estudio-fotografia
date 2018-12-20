@@ -28,7 +28,7 @@
 			$telefono2 = $_POST["telefono2"];
 			$nick = $_POST["nick"];
 			$contraseña = $_POST["contraseña"];
-			$id = $_GET["c"];
+			$id = $_POST["c"];
 
 			$conector = conectarServer();
 
