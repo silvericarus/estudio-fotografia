@@ -112,7 +112,7 @@
 
 					$currenttimestamp = date("Y-m-d");
 
-					$consulta = "SELECT id,imagen,titular from noticias where fecha <= '$currenttimestamp'  order by fecha desc limit 0,3";
+					$consulta = "SELECT id,imagen,titular,contenido from noticias where fecha <= '$currenttimestamp'  order by fecha desc limit 0,3";
 
 					$datos = mysqli_query($conector,$consulta);
 
@@ -120,10 +120,7 @@
 					$resultado = mysqli_fetch_array($datos,MYSQLI_ASSOC);
 
 					while (!is_null($resultado)) {
-						echo "<div class='noticiap card'><img class='card-img-top' src='./img/noticias/$resultado[imagen]' alt='$resultado[titular]' width='250px'><div class='card-body'>$resultado[titular]<form action='php/noticias/verNoticia.php' method='post'>
-						<input type='hidden' name='n' value='$resultado[id]'>
-				<input type='submit' name='verNoticia' value='Ver' class=' btn btn-light botonEditar'>
-			</form></div></div>";
+						echo "<div class='noticiap card'><img class='card-img-top' src='./img/noticias/$resultado[imagen]' alt='$resultado[titular]' width='250px'><div class='card-body'><h5 class='card-title'>$resultado[titular]</h5><a href='#' class='btn btn-primary botonEditar' data-toggle='collapse' data-target='#contenidocollapse'>Ver</a></div><div class='card-body collapse' id='contenidocollapse'>$resultado[contenido]</div></div>";
 						$resultado = mysqli_fetch_array($datos,MYSQLI_ASSOC);
 					}
 					mysqli_close($conector);
