@@ -62,7 +62,8 @@
 							echo "<td style='width:68px;border:none;'><div><p></p></div></td>";
 						}else{
 							if(busca_citas("$anio-$mes-$dia")){
-								echo "<td bgcolor=\"#faf6e9\" style='color:black'><div>$dia
+								$numcitas = num_citas("$anio-$mes-$dia");
+								echo "<td bgcolor=\"#faf6e9\" style='color:black' data-toggle='tooltip' data-placement='top' title='Tienes $numcitas citas este día.'><div>$dia
 										<form action=\"verCita.php\" method=\"get\">	
 											<input type='hidden' name='fecha' value='$anio-$mes-$dia'>
 											<input type=\"submit\" name=\"verCita\" value=\"Ver citas\" class=\"botonEditar\">
@@ -82,7 +83,8 @@
 						echo "<tr>";
 					}
 					if(busca_citas("$anio-$mes-$dia")){
-						echo "<td bgcolor=\"#faf6e9\" style='color:black'><div>$dia<form action=\"verCita.php\" method=\"get\">
+						$numcitas = num_citas("$anio-$mes-$dia");
+						echo "<td bgcolor=\"#faf6e9\" style='color:black' data-toggle='tooltip' data-placement='top' title='Tienes $numcitas citas este día.'><div>$dia<form action=\"verCita.php\" method=\"get\">
 							<input type='hidden' name='fecha' value='$anio-$mes-$dia'>
 			<input type=\"submit\" name=\"verCita\" value=\"Ver citas\" class=\"botonEditar\">
 		</form></div></td>";
@@ -122,5 +124,11 @@
 	?>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script type="text/javascript">
+	$(function () {
+  		$('[data-toggle="tooltip"]').tooltip()
+	})
+</script>
 </html>

@@ -216,4 +216,12 @@
 
 		return $nombrearchivo[0];
 	}
+
+	function num_citas ($fecha){
+		$conector = conectarServer();
+		$consulta = "SELECT COUNT(id) citas from citas where fecha = '$fecha'";
+		$datos = mysqli_query($conector,$consulta);
+		$resultado = mysqli_fetch_array($datos,MYSQLI_ASSOC);
+		return $resultado["citas"];
+	}
 ?>
