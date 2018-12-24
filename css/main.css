@@ -310,3 +310,9 @@ button[disabled="false"]:hover .next {
   margin: 5px;
   margin-bottom: auto;
 }
+
+.footer-details {
+  text-align: justify;
+  width: 50%;
+  margin-right:10px;
+}
