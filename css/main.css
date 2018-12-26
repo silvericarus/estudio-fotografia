@@ -310,3 +310,17 @@ button[disabled="false"]:hover .next {
   margin: 5px;
   margin-bottom: auto;
 }
+
+.footer-details {
+  text-align: justify;
+  width: 50%;
+  margin-right:10px;
+}
+
+section h4{
+  margin-top: 40px;
+}
+
+section p,section li{
+  font-family: 'Roboto',sans-serif;
+}
