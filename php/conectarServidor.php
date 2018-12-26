@@ -160,7 +160,7 @@
 				<li><a href=\"php/citas/citas.php\">Citas</a></li>
 			</ul>
 			<p class='footer-details'>
-				FOTOS Y OBJETIVOS, S.L. con domicilio en la CALLE FLASH, 23, 12345, MADRID, MADRID; CIF, B56363626 y nº de inscripción en el Registro Mercantil de Madrid, Tomo 5743, Folio 298, SECCION  3,  Hoja número F-49643, inscripción 3º,es titular de esta web.
+				FOTOS Y OBJETIVOS, S.L. con domicilio en la Calle Gran Vía de Colón, 23, 18001, Granada, Granada; CIF, B56363626 y nº de inscripción en el Registro Mercantil de Granada, Tomo 5743, Folio 298, SECCION  3,  Hoja número F-49643, inscripción 3º,es titular de esta web.
 				Para ver más información sobre el sitio pulsar <a href='./info_page.php'>aquí</a>.
 			</p>
 			</div>
@@ -179,7 +179,7 @@
 			</ul>
 			<p class='footer-details'>
 				FOTOS Y OBJETIVOS, S.L. con domicilio en la Calle Gran Vía de Colón, 23, 18001, Granada, Granada; CIF, B56363626 y nº de inscripción en el Registro Mercantil de Granada, Tomo 5743, Folio 298, SECCION  3,  Hoja número F-49643, inscripción 3º,es titular de esta web.
-				Para ver más información sobre el sitio pulsar <a href='../info_page.php'>aquí</a>.
+				Para ver más información sobre el sitio pulsar <a href='../../info_page.php'>aquí</a>.
 			</p>
 			</div>
 			</div>";
