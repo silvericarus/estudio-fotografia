@@ -32,6 +32,27 @@
 	<button title="Ir abajo" class="scrolldown">
         <i class="fas fa-chevron-down"></i>
     </button> 
+    <div class="modal fade" id="modalCookies" tabindex="-1" role="dialog"
+    aria-hidden="true">
+  		<div class="modal-dialog" role="document">
+    		<div class="modal-content">
+      			<div class="modal-header">
+        			<h5 class="modal-title" id="modalCookiesTitle">Política de aceptación
+de cookies</h5>
+      			</div>
+      			<div class="modal-body">
+        			Utilizamos cookies propias para mejorar nuestros servicios y mostrarle
+publicidad relacionada con sus preferencias mediante el análisis de sus hábitos de
+navegación. Si continua navegando, consideramos que acepta su uso. Puede obtener
+más información <a href="cookies_page.php">aquí</a>.
+      			</div>
+      			<div class="modal-footer">
+        			<button type="button" class="btn btn-danger" onclick="ClickRechazar()">Rechazar</button>
+        			<button type="button" class="btn btn-success" onclick="ClickAceptar()">Aceptar</button>
+      			</div>
+    		</div>
+  		</div>
+	</div>
     <?php 
     	mapaweb("/");
      ?>
@@ -142,5 +163,24 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 <script type="text/javascript">
 	$(".carousel").carousel(5000);
+</script>
+<script type="text/javascript">
+	if (!localStorage.getItem('cookies')) {
+		$('#modalCookies').modal('show');	
+	}
+	
+	function ClickAceptar() {
+		$('#modalCookies').modal('hide');
+		localStorage.setItem('cookies',1);
+	}
+
+	function ClickRechazar() {
+		$('#modalCookies').modal('hide');
+		setTimeout("Redireccionar()",2000);
+	}
+
+	function Redireccionar() {
+		window.location='https://www.boe.es/buscar/doc.php?id=BOE-A-1999-23750';
+	}
 </script>
 </html>
