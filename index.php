@@ -165,6 +165,8 @@ más información <a href="cookies_page.php">aquí</a>.
 	$(".carousel").carousel(5000);
 </script>
 <script type="text/javascript">
+	$('#modalCookies').modal({backdrop: 'static', keyboard: false});
+
 	if (!localStorage.getItem('cookies')) {
 		$('#modalCookies').modal('show');	
 	}
