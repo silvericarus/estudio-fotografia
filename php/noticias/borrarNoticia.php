@@ -9,12 +9,12 @@
 	<link rel="stylesheet" href="../../css/main.css">
 </head>
 <body>
-	<nav>
+	
 		<?php 
 			include '../conectarServidor.php';
 			menu("noticias");
 		?>
-	</nav>
+	
 	<?php 
 		/**
 		 * Se almacenan los datos recibidos desde el formulario,

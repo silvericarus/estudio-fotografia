@@ -15,7 +15,7 @@
 	<script type="text/javascript" src="../../js/mostrarAyuda.js"></script>
 </head>
 <body>
-	<nav>
+	
 		<?php 
 			include '../conectarServidor.php';
 			/**
@@ -23,7 +23,7 @@
 			 */
 			menu("clientes");
 		?>
-	</nav>
+	
 	<div id="searchbar">
 		<form name="buscarclientes" action="buscarClientes.php" method="get">
 			<input type="text" name="textobusqueda" title="Nombre, Apellidos o Teléfono primario" required="required">

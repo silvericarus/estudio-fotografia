@@ -14,12 +14,12 @@
 	<script type="text/javascript" src="../../js/scroll.js"></script>
 </head>
 <body>
-	<nav>
+	
 		<?php 
 			include '../conectarServidor.php';
 			menu("trabajos");
 		?>
-	</nav>
+	
 	<button title="Ir abajo" class="scrolldown">
         <i class="fas fa-chevron-down"></i>
     </button> 

@@ -16,12 +16,12 @@
 	<script type="text/javascript" src="../../js/mostrarAyuda.js"></script>
 </head>
 <body>
-	<nav>
+	
 		<?php 
 			include '../conectarServidor.php';
 			menu('noticias');
 		?>
-	</nav>
+	
 	<div id="searchbar">
 		<form name='buscarnoticias' action='buscarNoticias.php' method='get'>
 			<input type='text' name='textobusqueda' title="Titular o Fecha de activación en formato 30/12/1996" required="required">
