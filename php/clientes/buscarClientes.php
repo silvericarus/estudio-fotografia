@@ -9,12 +9,12 @@
 	<link rel="stylesheet" href="../../css/main.css">
 </head>
 <body>
-	<nav>
+	
 		<?php 
 			include '../conectarServidor.php';
 			menu("trabajos");
 		?>
-	</nav>
+	
 	<div id="searchbar">
 		<<form name="buscarclientes" action="buscarClientes.php" method="get">
 			<input type="text" name="textobusqueda" title="Nombre, Apellidos o Teléfono primario" required="required">

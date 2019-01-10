@@ -10,12 +10,12 @@
 	<script type="text/javascript" src="../../js/confirmarBorrado.js"></script>
 </head>
 <body>
-	<nav>
+	
 		<?php 
 			include '../conectarServidor.php';
 			menu("citas");
 		?>
-	</nav>
+	
 	<div class="content">
 		<?php 
 

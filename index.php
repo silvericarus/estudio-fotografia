@@ -18,7 +18,6 @@
 <body>
 	<div class="container-fluid">
 		<div class="row">
-			<nav>
 				<?php 
 					include 'php/conectarServidor.php';
 					/**
@@ -26,7 +25,6 @@
 					 */
 					menu("/");
 				?>
-			</nav>
 		</div>
 	</div>
 	<button title="Ir abajo" class="scrolldown">

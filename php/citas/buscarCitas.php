@@ -10,12 +10,12 @@
 	<link rel="stylesheet" href="../../css/main.css">
 </head>
 <body>
-	<nav>
+	
 		<?php 
 			include '../conectarServidor.php';
 			menu("trabajos");
 		?>
-	</nav>
+	
 	<div id="searchbar">
 		<form name="buscarcitas" action="buscarCitas.php">
 			<input type="text" name="textobusqueda" title="Fecha en formato 30/12/1996 o Nombre de cliente" required="required">

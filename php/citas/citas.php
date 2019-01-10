@@ -15,7 +15,7 @@
 	<script type="text/javascript" src="../../js/mostrarAyuda.js"></script>
 </head>
 <body>
-	<nav>
+	
 		<?php 
 			include '../conectarServidor.php';
 			/**
@@ -23,7 +23,7 @@
 			 */
 			menu("citas");
 		?>
-	</nav>
+	
 	<?php 
     	mapaweb("php");
      ?>

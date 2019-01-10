@@ -7,32 +7,95 @@
 
 	function menu($ruta){
 		if($ruta == "/"){
-			echo "<div id=\"navbar\">
-			<ul>
-				<li><img src=\"img/logo.png\" alt=\"Logo de la empresa\" width=\"50px\" id=\"logoEmpresa\"></li>
-				<li><a href=\"index.php\">Inicio</a></li>
-				<li><a href=\"php/noticias/noticias.php\">Noticias</a></li>
-				<li><a href=\"php/clientes/clientes.php\">Clientes</a></li>
-				<li><a href=\"php/trabajos/trabajos.php\">Trabajos</a></li>
-				<li><a href=\"php/citas/citas.php\">Citas</a></li>
-				<li><a href=\"#\">Contacto</a></li>
-			</ul>
-			<a href=\"#\"><i class=\"fas fa-sign-in-alt\"></i></a>
-			</div>";
-		
+			echo "<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\" style=\"width:100%;\">
+					<a class=\"navbar-brand\" href=\"index.php\"><img src=\"img/logo.png\" alt=\"Logo de la empresa\" width=\"50px\" id=\"logoEmpresa\"></a>
+					<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbar\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
+    					<span class=\"navbar-toggler-icon\"></span>
+  					</button>
+  					<div class=\"collapse navbar-collapse\" id=\"navbarCollapse\">
+    					<ul class=\"navbar-nav\">
+    						<li class=\"nav-item\">
+      							<a class=\"nav-item nav-link\" href=\"php/noticias/noticias.php\">Noticias</a>
+      						</li>
+      						<li class=\"nav-item\">
+      						<a class=\"nav-item nav-link\" href=\"php/clientes/clientes.php\">Clientes</a>
+      						</li>
+      						<li class=\"nav-item\">
+      						<a class=\"nav-item nav-link\" href=\"php/trabajos/trabajos.php\">Trabajos</a>
+      						</li>
+      						<li class=\"nav-item\">
+      						<a class=\"nav-item nav-link\" href=\"php/citas/citas.php\">Citas</a>
+      						</li>
+      						<li class=\"nav-item\">
+      						<a class=\"nav-item nav-link disabled\" href=\"#\">Contacto</a>
+      						</li>
+    					</ul>
+  					</div>
+  					<form class=\"form-inline\">
+  					<div class=\"input-group my-2\">
+  						<div class=\"input-group-prepend\">
+    						<span class=\"input-group-text\" id=\"basic-addon1\"><i class=\"fas fa-user\"></i></span>
+  						</div>
+  						<input class=\"form-control mr-sm-2\" type=\"text\" placeholder=\"Usuario\" aria-label=\"Usuario\">
+  					</div>
+  					<div class=\"input-group my-2\">
+  						<div class=\"input-group-prepend\">
+    						<span class=\"input-group-text\" id=\"basic-addon2\"><i class=\"fas fa-key\"></i></span>
+  						</div>
+  						<input class=\"form-control mr-sm-2\" type=\"password\" placeholder=\"Contraseña\" aria-label=\"Contraseña\">
+  					</div>
+  					<div class=\"form-check form-check-inline\">
+  						<input class=\"form-check-input\" type=\"checkbox\" id=\"recordarCheck\" value=\"recordar\" name=\"recordarCheck\">
+  						<label class=\"form-check-label\" for=\"recordarCheck\">Recordarme</label>
+					</div>
+  					<button class=\"btn btn-outline-success my-2\" type=\"submit\">Iniciar Sesión</button>
+  					</form>
+				</nav>";
 		}else{
-			echo "<div id=\"navbar\">
-			<ul>
-				<li><img src=\"../../img/logo.png\" alt=\"Logo de la empresa\" width=\"50px\" id=\"logoEmpresa\"></li>
-				<li><a href=\"../../index.php\">Inicio</a></li>
-				<li><a href=\"../noticias/noticias.php\">Noticias</a></li>
-				<li><a href=\"../clientes/clientes.php\">Clientes</a></li>
-				<li><a href=\"../trabajos/trabajos.php\">Trabajos</a></li>
-				<li><a href=\"../citas/citas.php\">Citas</a></li>
-				<li><a href=\"#\">Contacto</a></li>
-			</ul>
-			<a href=\"#\"><i class=\"fas fa-sign-in-alt\"></i></a>
-			</div>";
+						echo "<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\" style=\"width:100%;\">
+					<a class=\"navbar-brand\" href=\"../../index.php\"><img src=\"../../img/logo.png\" alt=\"Logo de la empresa\" width=\"50px\" id=\"logoEmpresa\"></a>
+					<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbar\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
+    					<span class=\"navbar-toggler-icon\"></span>
+  					</button>
+  					<div class=\"collapse navbar-collapse\" id=\"navbarCollapse\">
+    					<ul class=\"navbar-nav\">
+    						<li class=\"nav-item\">
+      							<a class=\"nav-item nav-link\" href=\"../noticias/noticias.php\">Noticias</a>
+      						</li>
+      						<li class=\"nav-item\">
+      						<a class=\"nav-item nav-link\" href=\"../clientes/clientes.php\">Clientes</a>
+      						</li>
+      						<li class=\"nav-item\">
+      						<a class=\"nav-item nav-link\" href=\"../trabajos/trabajos.php\">Trabajos</a>
+      						</li>
+      						<li class=\"nav-item\">
+      						<a class=\"nav-item nav-link\" href=\"../citas/citas.php\">Citas</a>
+      						</li>
+      						<li class=\"nav-item\">
+      						<a class=\"nav-item nav-link disabled\" href=\"#\">Contacto</a>
+      						</li>
+    					</ul>
+  					</div>
+  					<form class=\"form-inline\">
+  					<div class=\"input-group my-2\">
+  						<div class=\"input-group-prepend\">
+    						<span class=\"input-group-text\" id=\"basic-addon1\"><i class=\"fas fa-user\"></i></span>
+  						</div>
+  						<input class=\"form-control mr-sm-2\" type=\"text\" placeholder=\"Usuario\" aria-label=\"Usuario\">
+  					</div>
+  					<div class=\"input-group my-2\">
+  						<div class=\"input-group-prepend\">
+    						<span class=\"input-group-text\" id=\"basic-addon2\"><i class=\"fas fa-key\"></i></span>
+  						</div>
+  						<input class=\"form-control mr-sm-2\" type=\"password\" placeholder=\"Contraseña\" aria-label=\"Contraseña\">
+  					</div>
+  					<div class=\"form-check form-check-inline\">
+  						<input class=\"form-check-input\" type=\"checkbox\" id=\"recordarCheck\" value=\"recordar\" name=\"recordarCheck\">
+  						<label class=\"form-check-label\" for=\"recordarCheck\">Recordarme</label>
+					</div>
+  					<button class=\"btn btn-outline-success my-2\" type=\"submit\">Iniciar Sesión</button>
+  					</form>
+				</nav>";
 		}
 	}
 

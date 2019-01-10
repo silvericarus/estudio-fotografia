@@ -17,12 +17,12 @@
 	<script type="text/javascript" src="../../js/mostrarAyuda.js"></script>
 </head>
 <body>
-	<nav>
+	
 		<?php 
 			include '../conectarServidor.php';
 			menu("trabajos");
 		?>
-	</nav>
+	
 	<div id="searchbar">
 		<form name="buscartrabajos" action="buscarTrabajos.php">
 			<input type="text" name="textobusqueda" title="Título, nombre de cliente o precio" required="required">

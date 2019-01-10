@@ -8,12 +8,12 @@
 	<link rel="stylesheet" href="../../css/main.css">
 </head>
 <body>
-	<nav>
+	
 		<?php 
 			include '../conectarServidor.php';
 			menu("trabajos");
 		?>
-	</nav>
+	
 	<div class="content">
 		<?php 
 

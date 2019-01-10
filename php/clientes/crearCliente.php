@@ -9,12 +9,12 @@
 	<link rel="stylesheet" href="../../css/main.css">
 </head>
 <body>
-	<nav>
+	
 		<?php 
 			include '../conectarServidor.php';
 			menu("trabajos");
 		?>
-	</nav>
+	
 	<?php 
 		/**
 		 * Si hay algún dato que llegue desde el formulario, 
