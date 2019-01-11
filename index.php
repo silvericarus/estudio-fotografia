@@ -54,6 +54,7 @@ más información <a href="cookies_page.php">aquí</a>.
     <?php 
     	mapaweb("/");
      ?>
+    <!--TODO añadir aqui el slider-->
     <div class="container">
     	<div class="row">
 			<div class="col-12 offset-3 content">
@@ -98,21 +99,21 @@ más información <a href="cookies_page.php">aquí</a>.
   </ol>
   <div class='carousel-inner'>
     <div class='carousel-item active'>
-      	<img class='d-block w-100 p-3' src='./img/trabajos/$files[$archivo1]' alt='First slide' height='700px'>
+      	<img class='d-block w-100' src='./img/trabajos/$files[$archivo1]' alt='First slide'>
       	<div class='carousel-caption d-none d-md-block caption'>
     		<h5>$resultado1[titulo]</h5>
     		<p>$resultado1[descripcion]</p>
   		</div>
     </div>
     <div class='carousel-item'>
-      	<img class='d-block w-100 p-3' src='./img/trabajos/$files[$archivo2]' alt='Second slide' height='700px'>
+      	<img class='d-block w-100' src='./img/trabajos/$files[$archivo2]' alt='Second slide'>
       	<div class='carousel-caption d-none d-md-block caption'>
     		<h5>$resultado2[titulo]</h5>
     		<p>$resultado2[descripcion]</p>
   		</div>
     </div>
     <div class='carousel-item'>
-      	<img class='d-block w-100 p-3' src='./img/trabajos/$files[$archivo3]' alt='Third slide' height='700px'>
+      	<img class='d-block w-100' src='./img/trabajos/$files[$archivo3]' alt='Third slide'>
       	<div class='carousel-caption d-none d-md-block caption'>
     		<h5>$resultado3[titulo]</h5>
     		<p>$resultado3[descripcion]</p>
@@ -165,7 +166,7 @@ más información <a href="cookies_page.php">aquí</a>.
 <script type="text/javascript">
 	$('#modalCookies').modal({backdrop: 'static', keyboard: false});
 
-	if (!localStorage.getItem('cookies')) {
+	if (localStorage.getItem('cookies')!=='1') {
 		$('#modalCookies').modal('show');	
 	}
 	
