@@ -8,10 +8,10 @@
 	function menu($ruta){
 		if($ruta == "/"){
 			echo "<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\" style=\"width:100%;\">
-					<a class=\"navbar-brand\" href=\"index.php\"><img src=\"img/logo.png\" alt=\"Logo de la empresa\" width=\"50px\" id=\"logoEmpresa\"></a>
 					<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbar\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
     					<span class=\"navbar-toggler-icon\"></span>
   					</button>
+  					<a class=\"navbar-brand\" href=\"index.php\"><img src=\"img/logo.png\" alt=\"Logo de la empresa\" width=\"50px\" id=\"logoEmpresa\"></a>
   					<div class=\"collapse navbar-collapse\" id=\"navbarCollapse\">
     					<ul class=\"navbar-nav\">
     						<li class=\"nav-item\">
@@ -30,25 +30,10 @@
       						<a class=\"nav-item nav-link disabled\" href=\"#\">Contacto</a>
       						</li>
     					</ul>
+
   					</div>
-  					<form class=\"form-inline\">
-  					<div class=\"input-group my-2\">
-  						<div class=\"input-group-prepend\">
-    						<span class=\"input-group-text\" id=\"basic-addon1\"><i class=\"fas fa-user\"></i></span>
-  						</div>
-  						<input class=\"form-control mr-sm-2\" type=\"text\" placeholder=\"Usuario\" aria-label=\"Usuario\">
-  					</div>
-  					<div class=\"input-group my-2\">
-  						<div class=\"input-group-prepend\">
-    						<span class=\"input-group-text\" id=\"basic-addon2\"><i class=\"fas fa-key\"></i></span>
-  						</div>
-  						<input class=\"form-control mr-sm-2\" type=\"password\" placeholder=\"Contraseña\" aria-label=\"Contraseña\">
-  					</div>
-  					<div class=\"form-check form-check-inline\">
-  						<input class=\"form-check-input\" type=\"checkbox\" id=\"recordarCheck\" value=\"recordar\" name=\"recordarCheck\">
-  						<label class=\"form-check-label\" for=\"recordarCheck\">Recordarme</label>
-					</div>
-  					<button class=\"btn btn-outline-success my-2\" type=\"submit\">Iniciar Sesión</button>
+  					<form id='login' action='login.php' method='post'>
+  						<button type='submit' class='btn btn-primary' form='login'><i class=\"fas fa-sign-in-alt\"></i></button>
   					</form>
 				</nav>";
 		}else{
@@ -76,25 +61,7 @@
       						</li>
     					</ul>
   					</div>
-  					<form class=\"form-inline\">
-  					<div class=\"input-group my-2\">
-  						<div class=\"input-group-prepend\">
-    						<span class=\"input-group-text\" id=\"basic-addon1\"><i class=\"fas fa-user\"></i></span>
-  						</div>
-  						<input class=\"form-control mr-sm-2\" type=\"text\" placeholder=\"Usuario\" aria-label=\"Usuario\">
-  					</div>
-  					<div class=\"input-group my-2\">
-  						<div class=\"input-group-prepend\">
-    						<span class=\"input-group-text\" id=\"basic-addon2\"><i class=\"fas fa-key\"></i></span>
-  						</div>
-  						<input class=\"form-control mr-sm-2\" type=\"password\" placeholder=\"Contraseña\" aria-label=\"Contraseña\">
-  					</div>
-  					<div class=\"form-check form-check-inline\">
-  						<input class=\"form-check-input\" type=\"checkbox\" id=\"recordarCheck\" value=\"recordar\" name=\"recordarCheck\">
-  						<label class=\"form-check-label\" for=\"recordarCheck\">Recordarme</label>
-					</div>
-  					<button class=\"btn btn-outline-success my-2\" type=\"submit\">Iniciar Sesión</button>
-  					</form>
+  					
 				</nav>";
 		}
 	}
