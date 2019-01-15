@@ -1,3 +1,6 @@
+<?php 
+session_start();
+ ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -10,7 +13,6 @@
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
-	<script type="text/javascript" src="js/contextmenu.js"></script>
 	<script type="text/javascript" src="js/scroll.js"></script>
 	<script type="text/javascript" src="js/mostrarAyuda.js"></script>
 	<link rel="stylesheet" href="css/main.css">
@@ -18,12 +20,13 @@
 <body>
 	<div class="container-fluid">
 		<div class="row">
-				<?php 
+				<?php
 					include 'php/conectarServidor.php';
+					$idUser = getId();
 					/**
 					 * Se llama a la función que crea el menú con / como parámetro 'ruta'
 					 */
-					menu("/");
+					menu("/",$idUser);
 				?>
 		</div>
 	</div>
@@ -53,82 +56,81 @@ más información <a href="cookies_page.php">aquí</a>.
 	</div>
     <?php 
     	mapaweb("/");
-     ?>
-    <!--TODO añadir aqui el slider-->
-    <div class="container">
-    	<div class="row">
-			<div class="col-12 offset-3 content">
-				<?php 
-					$conector = conectarServer();
+		$conector = conectarServer();
 
-					$files = array_slice(scandir('./img/trabajos'), 2);
+			$files = array_slice(scandir('./img/trabajos'), 2);
 
-					$archivo1 = rand(0,sizeof($files)-1);
-					$archivo2 = rand(0,sizeof($files)-1);
-					while($archivo2==$archivo1){
-						$archivo2 = rand(0,sizeof($files)-1);
-					}
-					$archivo3 = rand(0,sizeof($files)-1);
-					while($archivo3==$archivo2||$archivo3==$archivo1){
-						$archivo3 = rand(0,sizeof($files)-1);
-					}
+			$archivo1 = rand(0,sizeof($files)-1);
+			$archivo2 = rand(0,sizeof($files)-1);
+			while($archivo2==$archivo1){
+				$archivo2 = rand(0,sizeof($files)-1);
+			}
+			$archivo3 = rand(0,sizeof($files)-1);
+			while($archivo3==$archivo2||$archivo3==$archivo1){
+				$archivo3 = rand(0,sizeof($files)-1);
+			}
 
 
-					$id1 = archivo_id($files[$archivo1]);
-					$id2 = archivo_id($files[$archivo2]);
-					$id3 = archivo_id($files[$archivo3]);
+			$id1 = archivo_id($files[$archivo1]);
+			$id2 = archivo_id($files[$archivo2]);
+			$id3 = archivo_id($files[$archivo3]);
 
-					$con1 = "SELECT titulo,descripcion from trabajos where id = $id1";
-					$con2 = "SELECT titulo,descripcion from trabajos where id = $id2";
-					$con3 = "SELECT titulo,descripcion from trabajos where id = $id3";
+			$con1 = "SELECT titulo,descripcion from trabajos where id = $id1";
+			$con2 = "SELECT titulo,descripcion from trabajos where id = $id2";
+			$con3 = "SELECT titulo,descripcion from trabajos where id = $id3";
 
-					$datos1 = mysqli_query($conector,$con1);
-					$resultado1 = mysqli_fetch_array($datos1,MYSQLI_ASSOC);
+			$datos1 = mysqli_query($conector,$con1);
+			$resultado1 = mysqli_fetch_array($datos1,MYSQLI_ASSOC);
 
-					$datos2 = mysqli_query($conector,$con2);
-					$resultado2 = mysqli_fetch_array($datos2,MYSQLI_ASSOC);
+			$datos2 = mysqli_query($conector,$con2);
+			$resultado2 = mysqli_fetch_array($datos2,MYSQLI_ASSOC);
 
-					$datos3 = mysqli_query($conector,$con3);
-					$resultado3 = mysqli_fetch_array($datos3,MYSQLI_ASSOC);
+			$datos3 = mysqli_query($conector,$con3);
+			$resultado3 = mysqli_fetch_array($datos3,MYSQLI_ASSOC);
 
-			echo "<div id='carousel' class='carousel slide' data-ride='carousel'>
+			echo "<div id='carousel' class='carousel slide carousel-fade' data-ride='carousel'>
   <ol class='carousel-indicators'>
     <li data-target='#carousel' data-slide-to='0' class='active'></li>
     <li data-target='#carousel' data-slide-to='1'></li>
     <li data-target='#carousel' data-slide-to='2'></li>
   </ol>
   <div class='carousel-inner'>
-    <div class='carousel-item active'>
-      	<img class='d-block w-100' src='./img/trabajos/$files[$archivo1]' alt='First slide'>
+    <div class='carousel-item active itemcarousel'>
+      	<img class='d-block w-100 ' src='./img/trabajos/$files[$archivo1]' alt='First slide'>
       	<div class='carousel-caption d-none d-md-block caption'>
     		<h5>$resultado1[titulo]</h5>
     		<p>$resultado1[descripcion]</p>
   		</div>
     </div>
-    <div class='carousel-item'>
-      	<img class='d-block w-100' src='./img/trabajos/$files[$archivo2]' alt='Second slide'>
+    <div class='carousel-item itemcarousel'>
+      	<img class='d-block w-100 ' src='./img/trabajos/$files[$archivo2]' alt='Second slide'>
       	<div class='carousel-caption d-none d-md-block caption'>
     		<h5>$resultado2[titulo]</h5>
     		<p>$resultado2[descripcion]</p>
   		</div>
     </div>
-    <div class='carousel-item'>
-      	<img class='d-block w-100' src='./img/trabajos/$files[$archivo3]' alt='Third slide'>
+    <div class='carousel-item itemcarousel'>
+      	<img class='d-block w-100 ' src='./img/trabajos/$files[$archivo3]' alt='Third slide'>
       	<div class='carousel-caption d-none d-md-block caption'>
     		<h5>$resultado3[titulo]</h5>
     		<p>$resultado3[descripcion]</p>
   		</div>
     </div>
   </div>
-  <a class='carousel-control-prev' href='#carousel' role='button' data-slide='prev'>
-    <span class='carousel-control-prev-icon bg-dark' aria-hidden='true'></span>
+  <a class='carousel-control-prev text-dark' href='#carousel' role='button' data-slide='prev'>
+    <span class='carousel-control-prev-icon' aria-hidden='true'></span>
     <span class='sr-only'>Previous</span>
   </a>
-  <a class='carousel-control-next' href='#carousel' role='button' data-slide='next'>
-    <span class='carousel-control-next-icon bg-dark' aria-hidden='true'></span>
+  <a class='carousel-control-next text-dark' href='#carousel' role='button' data-slide='next'>
+    <span class='carousel-control-next-icon' aria-hidden='true'></span>
     <span class='sr-only'>Next</span>
   </a>
 </div><br>";
+     ?>
+    <div class="container">
+    	<div class="row">
+			<div class="col-10 offset-1 content">
+				<?php 
 
 					$currenttimestamp = date("Y-m-d");
 
@@ -140,7 +142,7 @@ más información <a href="cookies_page.php">aquí</a>.
 					$resultado = mysqli_fetch_array($datos,MYSQLI_ASSOC);
 
 					while (!is_null($resultado)) {
-						echo "<div class='noticiap card'><img class='card-img-top' src='./img/noticias/$resultado[imagen]' alt='$resultado[titular]' width='250px'><div class='card-body'><h5 class='card-title'>$resultado[titular]</h5><a href='#' class='btn btn-primary botonEditar' data-toggle='collapse' data-target='#contenidocollapse'>Ver</a></div><div class='card-body collapse' id='contenidocollapse'>$resultado[contenido]</div></div>";
+						echo "<div class='noticiap card'><img class='card-img-top' src='./img/noticias/$resultado[imagen]' alt='$resultado[titular]' width='250px'><div class='card-body'><h5 class='card-title'>$resultado[titular]</h5><a href='#' class='btn btn-light botonEditar' data-toggle='collapse' data-target='#contenidocollapse'>Ver</a></div><div class='card-body collapse' id='contenidocollapse'>$resultado[contenido]</div></div>";
 						$resultado = mysqli_fetch_array($datos,MYSQLI_ASSOC);
 					}
 					mysqli_close($conector);
@@ -155,7 +157,7 @@ más información <a href="cookies_page.php">aquí</a>.
         <i class="fas fa-chevron-up"></i>
     </button>
     	<?php 
-    		footer("/");
+    		footer("/",$idUser);
     	 ?>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
