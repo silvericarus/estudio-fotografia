@@ -1,30 +1,23 @@
 <?php 
+
 	function conectarServer(){
 		$conector = mysqli_connect("localhost","root","","estudio");
 		mysqli_set_charset($conector,"utf8");
 		return $conector;
 	}
 
-	function menu($ruta){
+	function menu($ruta,$id){
 		if($ruta == "/"){
-			echo "<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\" style=\"width:100%;\">
+			if ($id == -1) {
+				echo "<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\" style=\"width:100%;\">
 					<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbar\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
     					<span class=\"navbar-toggler-icon\"></span>
   					</button>
   					<a class=\"navbar-brand\" href=\"index.php\"><img src=\"img/logo.png\" alt=\"Logo de la empresa\" width=\"50px\" id=\"logoEmpresa\"></a>
   					<div class=\"collapse navbar-collapse\" id=\"navbarCollapse\">
     					<ul class=\"navbar-nav\">
-    						<li class=\"nav-item\">
-      							<a class=\"nav-item nav-link\" href=\"php/noticias/noticias.php\">Noticias</a>
-      						</li>
       						<li class=\"nav-item\">
-      						<a class=\"nav-item nav-link\" href=\"php/clientes/clientes.php\">Clientes</a>
-      						</li>
-      						<li class=\"nav-item\">
-      						<a class=\"nav-item nav-link\" href=\"php/trabajos/trabajos.php\">Trabajos</a>
-      						</li>
-      						<li class=\"nav-item\">
-      						<a class=\"nav-item nav-link\" href=\"php/citas/citas.php\">Citas</a>
+      						<a class=\"nav-item nav-link text-light\" href=\"php/trabajos/trabajos.php\">Trabajos</a>
       						</li>
       						<li class=\"nav-item\">
       						<a class=\"nav-item nav-link disabled\" href=\"#\">Contacto</a>
@@ -33,36 +26,167 @@
 
   					</div>
   					<form id='login' action='login.php' method='post'>
-  						<button type='submit' class='btn btn-primary' form='login'><i class=\"fas fa-sign-in-alt\"></i></button>
+  						<button type='submit' class='btn btn-light' form='login'><i class=\"fas fa-sign-in-alt\"></i></button>
   					</form>
 				</nav>";
-		}else{
-						echo "<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\" style=\"width:100%;\">
-					<a class=\"navbar-brand\" href=\"../../index.php\"><img src=\"../../img/logo.png\" alt=\"Logo de la empresa\" width=\"50px\" id=\"logoEmpresa\"></a>
+			}else if ($id==0) {
+				# menú de admin
+				echo "<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\" style=\"width:100%;\">
 					<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbar\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
     					<span class=\"navbar-toggler-icon\"></span>
   					</button>
+  					<a class=\"navbar-brand\" href=\"index.php\"><img src=\"img/logo.png\" alt=\"Logo de la empresa\" width=\"50px\" id=\"logoEmpresa\"></a>
   					<div class=\"collapse navbar-collapse\" id=\"navbarCollapse\">
     					<ul class=\"navbar-nav\">
     						<li class=\"nav-item\">
-      							<a class=\"nav-item nav-link\" href=\"../noticias/noticias.php\">Noticias</a>
+      							<a class=\"nav-item nav-link text-light\" href=\"php/noticias/noticias.php\">Noticias</a>
       						</li>
       						<li class=\"nav-item\">
-      						<a class=\"nav-item nav-link\" href=\"../clientes/clientes.php\">Clientes</a>
+      						<a class=\"nav-item nav-link text-light\" href=\"php/clientes/clientes.php\">Clientes</a>
       						</li>
       						<li class=\"nav-item\">
-      						<a class=\"nav-item nav-link\" href=\"../trabajos/trabajos.php\">Trabajos</a>
+      						<a class=\"nav-item nav-link text-light\" href=\"php/trabajos/trabajos.php\">Trabajos</a>
       						</li>
       						<li class=\"nav-item\">
-      						<a class=\"nav-item nav-link\" href=\"../citas/citas.php\">Citas</a>
+      						<a class=\"nav-item nav-link text-light\" href=\"php/citas/citas.php\">Citas</a>
       						</li>
       						<li class=\"nav-item\">
       						<a class=\"nav-item nav-link disabled\" href=\"#\">Contacto</a>
       						</li>
     					</ul>
+
   					</div>
-  					
+  					<form id='cerrarSesion' action='php/cerrarSesion.php' method='post'>
+  						<button type='submit' class='btn btn-light' form='cerrarSesion'>Cerrar sesión de Administrador</button>
+  					</form>
 				</nav>";
+			}else{
+				# menú de cliente
+				$conector = conectarServer();
+
+				$consulta = "SELECT nombre from clientes where id = '$id'";
+				$datos = mysqli_query($conector,$consulta);
+				$resul = mysqli_fetch_array($datos,MYSQLI_ASSOC);
+				echo "<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\" style=\"width:100%;\">
+					<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbar\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
+    					<span class=\"navbar-toggler-icon\"></span>
+  					</button>
+  					<a class=\"navbar-brand\" href=\"index.php\"><img src=\"img/logo.png\" alt=\"Logo de la empresa\" width=\"50px\" id=\"logoEmpresa\"></a>
+  					<div class=\"collapse navbar-collapse\" id=\"navbarCollapse\">
+    					<ul class=\"navbar-nav\">
+    						<li class=\"nav-item\">
+      							<a class=\"nav-item nav-link text-light\" href=\"php/datos.php\">Mis Datos</a>
+      						</li>
+      						<li class=\"nav-item\">
+      						<a class=\"nav-item nav-link text-light\" href=\"php/trabajos/trabajos.php?c=true\">Mis Trabajos</a>
+      						</li>
+      						<li class=\"nav-item\">
+      						<a class=\"nav-item nav-link text-light\" href=\"php/citas/citas.php?c=true\">Mis Citas</a>
+      						</li>
+      						<li class=\"nav-item\">
+      						<a class=\"nav-item nav-link text-light\" href=\"php/trabajos/trabajos.php\">Trabajos Disponibles</a>
+      						</li>
+      						<li class=\"nav-item\">
+      						<a class=\"nav-item nav-link disabled\" href=\"#\">Contacto</a>
+      						</li>
+    					</ul>
+
+  					</div>
+  					<form id='cerrarSesion' action='php/cerrarSesion.php' method='post'>
+  						<button type='submit' class='btn btn-light' form='cerrarSesion'>Cerrar sesión de $resul[nombre]</button>
+  					</form>
+				</nav>";
+			}
+		}else{
+			if ($id == -1) {
+				echo "<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\" style=\"width:100%;\">
+					<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbar\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
+    					<span class=\"navbar-toggler-icon\"></span>
+  					</button>
+  					<a class=\"navbar-brand\" href=\"../index.php\"><img src=\"../img/logo.png\" alt=\"Logo de la empresa\" width=\"50px\" id=\"logoEmpresa\"></a>
+  					<div class=\"collapse navbar-collapse\" id=\"navbarCollapse\">
+    					<ul class=\"navbar-nav\">
+      						<li class=\"nav-item\">
+      						<a class=\"nav-item nav-link text-light\" href=\"./trabajos/trabajos.php\">Trabajos</a>
+      						</li>
+      						<li class=\"nav-item\">
+      						<a class=\"nav-item nav-link disabled\" href=\"#\">Contacto</a>
+      						</li>
+    					</ul>
+
+  					</div>
+  					<form id='login' action='./login.php' method='post'>
+  						<button type='submit' class='btn btn-light' form='login'><i class=\"fas fa-sign-in-alt\"></i></button>
+  					</form>
+				</nav>";
+			}else if ($id==0) {
+				# menú de admin
+				echo "<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\" style=\"width:100%;\">
+					<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbar\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
+    					<span class=\"navbar-toggler-icon\"></span>
+  					</button>
+  					<a class=\"navbar-brand\" href=\"../index.php\"><img src=\"../img/logo.png\" alt=\"Logo de la empresa\" width=\"50px\" id=\"logoEmpresa\"></a>
+  					<div class=\"collapse navbar-collapse\" id=\"navbarCollapse\">
+    					<ul class=\"navbar-nav\">
+    						<li class=\"nav-item\">
+      							<a class=\"nav-item nav-link text-light\" href=\"./noticias/noticias.php\">Noticias</a>
+      						</li>
+      						<li class=\"nav-item\">
+      						<a class=\"nav-item nav-link text-light\" href=\"./clientes/clientes.php\">Clientes</a>
+      						</li>
+      						<li class=\"nav-item\">
+      						<a class=\"nav-item nav-link text-light\" href=\"./trabajos/trabajos.php\">Trabajos</a>
+      						</li>
+      						<li class=\"nav-item\">
+      						<a class=\"nav-item nav-link text-light\" href=\"./citas/citas.php\">Citas</a>
+      						</li>
+      						<li class=\"nav-item\">
+      						<a class=\"nav-item nav-link disabled\" href=\"#\">Contacto</a>
+      						</li>
+    					</ul>
+
+  					</div>
+  					<form id='cerrarSesion' action='./cerrarSesion.php' method='post'>
+  						<button type='submit' class='btn btn-light' form='cerrarSesion'>Cerrar sesión de Administrador</button>
+  					</form>
+				</nav>";
+			}else{
+				# menú de cliente
+				$conector = conectarServer();
+
+				$consulta = "SELECT nombre from clientes where id = '$id'";
+				$datos = mysqli_query($conector,$consulta);
+				$resul = mysqli_fetch_array($datos,MYSQLI_ASSOC);
+				echo "<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\" style=\"width:100%;\">
+					<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbar\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
+    					<span class=\"navbar-toggler-icon\"></span>
+  					</button>
+  					<a class=\"navbar-brand\" href=\"../index.php\"><img src=\"../img/logo.png\" alt=\"Logo de la empresa\" width=\"50px\" id=\"logoEmpresa\"></a>
+  					<div class=\"collapse navbar-collapse\" id=\"navbarCollapse\">
+    					<ul class=\"navbar-nav\">
+    						<li class=\"nav-item\">
+      							<a class=\"nav-item nav-link text-light\" href=\"./datos.php\">Mis Datos</a>
+      						</li>
+      						<li class=\"nav-item\">
+      						<a class=\"nav-item nav-link text-light\" href=\"./trabajos/trabajos.php?c=true\">Mis Trabajos</a>
+      						</li>
+      						<li class=\"nav-item\">
+      						<a class=\"nav-item nav-link text-light\" href=\"./citas/citas.phpc=true\">Mis Citas</a>
+      						</li>
+      						<li class=\"nav-item\">
+      						<a class=\"nav-item nav-link text-light\" href=\"./trabajos/trabajos.php\">Trabajos Disponibles</a>
+      						</li>
+      						<li class=\"nav-item\">
+      						<a class=\"nav-item nav-link disabled\" href=\"#\">Contacto</a>
+      						</li>
+    					</ul>
+
+  					</div>
+  					<form id='cerrarSesion' action='./cerrarSesion.php' method='post'>
+  						<button type='submit' class='btn btn-light' form='cerrarSesion'>Cerrar sesión de $resul[nombre]</button>
+  					</form>
+				</nav>";
+			}
 		}
 	}
 
@@ -176,43 +300,88 @@
 		}
 	}
 
-	function footer($ubicacion){
+	function footer($ubicacion,$id){
 		if ($ubicacion=="/") {
-			echo "<footer>
-			<div class='footer'>
+			if ($id==0) {
+				echo "<footer>
+			<div class='footer text-light'>
 			<h5>Estudio de Fotografía</h5>
 			<div style='display:flex;justify-content:space-between;'>
 			<ul>
-				<li><a href=\"index.php\">Inicio</a></li>
-				<li><a href=\"php/noticias/noticias.php\">Noticias</a></li>
-				<li><a href=\"php/clientes/clientes.php\">Clientes</a></li>
-				<li><a href=\"php/trabajos/trabajos.php\">Trabajos</a></li>
-				<li><a href=\"php/citas/citas.php\">Citas</a></li>
+				<li><a href=\"index.php\" class=' text-warning'>Inicio</a></li>
+				<li><a href=\"php/noticias/noticias.php\" class=' text-warning'>Noticias</a></li>
+				<li><a href=\"php/clientes/clientes.php\" class=' text-warning'>Clientes</a></li>
+				<li><a href=\"php/trabajos/trabajos.php\" class=' text-warning'>Trabajos</a></li>
+				<li><a href=\"php/citas/citas.php\" class=' text-warning'>Citas</a></li>
 			</ul>
 			<p class='footer-details'>
 				FOTOS Y OBJETIVOS, S.L. con domicilio en la Calle Gran Vía de Colón, 23, 18001, Granada, Granada; CIF, B56363626 y nº de inscripción en el Registro Mercantil de Granada, Tomo 5743, Folio 298, SECCION  3,  Hoja número F-49643, inscripción 3º,es titular de esta web.
-				Para ver más información sobre el sitio pulsar <a href='./info_page.php'>aquí</a>.
+				Para ver más información sobre el sitio pulsar <a href='./info_page.php' class=' text-warning'>aquí</a>.
 			</p>
 			</div>
 			</div>
 			</footer>";
-		}else{
-			echo "<div class='footer'>
+			}else{
+				#Footer cliente
+				echo "<footer>
+			<div class='footer text-light'>
 			<h5>Estudio de Fotografía</h5>
 			<div style='display:flex;justify-content:space-between;'>
 			<ul>
-				<li><a href=\"../../index.php\">Inicio</a></li>
-				<li><a href=\"../noticias/noticias.php\">Noticias</a></li>
-				<li><a href=\"../clientes/clientes.php\">Clientes</a></li>
-				<li><a href=\"../trabajos/trabajos.php\">Trabajos</a></li>
-				<li><a href=\"../citas/citas.php\">Citas</a></li>
+				<li><a href=\"index.php\" class='text-warning'>Inicio</a></li>
+				<li><a href=\"php/datos.php\" class='text-warning'>Mis Datos</a></li>
+				<li><a href=\"php/trabajos/trabajos.php?c=true\" class='text-warning'>Mis Trabajos</a></li>
+				<li><a href=\"php/citas/citas.php?c=true\" class='text-warning'>Mis Citas</a></li>
+				<li><a href=\"php/trabajos/trabajos.php\" class='text-warning'>Trabajos Disponibles</a></li>
 			</ul>
 			<p class='footer-details'>
 				FOTOS Y OBJETIVOS, S.L. con domicilio en la Calle Gran Vía de Colón, 23, 18001, Granada, Granada; CIF, B56363626 y nº de inscripción en el Registro Mercantil de Granada, Tomo 5743, Folio 298, SECCION  3,  Hoja número F-49643, inscripción 3º,es titular de esta web.
-				Para ver más información sobre el sitio pulsar <a href='../../info_page.php'>aquí</a>.
+				Para ver más información sobre el sitio pulsar <a href='./info_page.php' class='text-warning'>aquí</a>.
+			</p>
+			</div>
+			</div>
+			</footer>";
+			}
+			
+		}else{
+			if ($id == 0) {
+				echo "<div class='footer text-light'>
+			<h5>Estudio de Fotografía</h5>
+			<div style='display:flex;justify-content:space-between;'>
+			<ul>
+				<li><a href=\"../../index.php\" class='text-warning'>Inicio</a></li>
+				<li><a href=\"../noticias/noticias.php\" class='text-warning'>Noticias</a></li>
+				<li><a href=\"../clientes/clientes.php\" class='text-warning'>Clientes</a></li>
+				<li><a href=\"../trabajos/trabajos.php\" class='text-warning'>Trabajos</a></li>
+				<li><a href=\"../citas/citas.php\" class='text-warning'>Citas</a></li>
+			</ul>
+			<p class='footer-details'>
+				FOTOS Y OBJETIVOS, S.L. con domicilio en la Calle Gran Vía de Colón, 23, 18001, Granada, Granada; CIF, B56363626 y nº de inscripción en el Registro Mercantil de Granada, Tomo 5743, Folio 298, SECCION  3,  Hoja número F-49643, inscripción 3º,es titular de esta web.
+				Para ver más información sobre el sitio pulsar <a href='../../info_page.php' class='text-warning'>aquí</a>.
 			</p>
 			</div>
 			</div>";
+			}else{
+				#footer cliente
+					echo "<div class='footer text-light'>
+			<h5>Estudio de Fotografía</h5>
+			<div style='display:flex;justify-content:space-between;'>
+			<ul>
+				<li><a href=\"../../index.php\" class='text-warning'>Inicio</a></li>
+				<li><a href=\"../datos.php\" class='text-warning'>Mis Datos</a></li>
+				<li><a href=\"../trabajos/trabajos.php?c=true\" class='text-warning'>Mis Trabajos</a></li>
+				<li><a href=\"../citas/citas.php?c=true\" class='text-warning'>Mis Citas</a></li>
+				<li><a href=\"../trabajos/trabajos.php\" class='text-warning'>Trabajos Disponibles</a></li>
+				
+			</ul>
+			<p class='footer-details'>
+				FOTOS Y OBJETIVOS, S.L. con domicilio en la Calle Gran Vía de Colón, 23, 18001, Granada, Granada; CIF, B56363626 y nº de inscripción en el Registro Mercantil de Granada, Tomo 5743, Folio 298, SECCION  3,  Hoja número F-49643, inscripción 3º,es titular de esta web.
+				Para ver más información sobre el sitio pulsar <a href='../../info_page.php' class='text-warning'>aquí</a>.
+			</p>
+			</div>
+			</div>";
+			}
+			
 		}
 	}
 	/**
@@ -265,5 +434,24 @@
 		$datos = mysqli_query($conector,$consulta);
 		$resultado = mysqli_fetch_array($datos,MYSQLI_ASSOC);
 		return $resultado["citas"];
+	}
+
+	function getId(){
+		if (isset($_SESSION["id"])) {
+			return $_SESSION["id"];
+		}else if (isset($_COOKIE["idsession"])) {
+				session_decode($_COOKIE["idsession"]);
+				return $_SESSION["id"];
+		}else{
+			return -1;
+		}
+	}
+
+	function comprobarUser($id){
+		if($id==0){
+			return "admin";
+		}else{
+			return "cliente";
+		}
 	}
 ?>

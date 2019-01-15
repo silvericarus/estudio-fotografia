@@ -14,13 +14,12 @@
 	display: table;
     margin-right:auto;
     margin-left: auto;
-    margin-top: 110px;
-    background-color: #494949;
     color: #faf6e9; 
     font-family: "Amiri",serif;
 }
 
 .content>table{
+  background-color: #494949;
 	border: 2px solid black;
 	border-collapse: collapse;
 }
@@ -49,7 +48,8 @@
 }
 
 body{
-	background-color: #faf6e9;
+	background-image:url('../img/pattern.svg');
+  background-attachment: fixed;
 }
 #navbar{
 	background-color: #ece8d9;
@@ -256,11 +256,11 @@ button[disabled="false"]:hover .next {
 }
 
 .noticiap{
-  width:70%;
+  width:100%;
   margin-left:auto;
   margin-right: auto;
   margin-bottom: 15px;
-  background-color: #494949;
+  background-color: #757575;
   border-radius: 5px;
   box-shadow: 5px 5px 10px 3px rgba(0,0,0,0.69);
 }
@@ -286,7 +286,7 @@ button[disabled="false"]:hover .next {
 .footer{
   bottom: 0;
   height: 247px;
-  width: 99%;
+  width: 100%;
   margin-top: 5px;
   background-color: #494949;
 }
@@ -304,8 +304,6 @@ button[disabled="false"]:hover .next {
   color: #ece8d9;
   font-family: 'Roboto',sans-serif;
   font-size: small;
-  border-radius: 5px;
-  border-style: outset;
   padding: 5px;
   margin: 5px;
   margin-bottom: auto;
@@ -323,4 +321,13 @@ section h4{
 
 section p,section li{
   font-family: 'Roboto',sans-serif;
+}
+
+.itemcarousel{
+  height:487px;
+}
+
+.itemcarousel img{
+  object-fit: cover;
+  height: inherit;
 }
