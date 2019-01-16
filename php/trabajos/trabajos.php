@@ -1,3 +1,11 @@
+<?php 
+session_start(); 
+
+include '../conectarServidor.php';
+
+$userId = getId();
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -19,18 +27,22 @@
 <body>
 	
 		<?php 
-			include '../conectarServidor.php';
-			menu("trabajos");
+			menu("trabajos",$userId);
 		?>
+	<?php 
+	if (!isset($_GET["c"])) {
+		echo "<div id=\"searchbar\">
+			<form name=\"buscartrabajos\" action=\"buscarTrabajos.php\">
+				<input type=\"text\" name=\"textobusqueda\" title=\"Título, nombre de cliente o precio\" required=\"required\">
+				<input type=\"submit\"><br>
+				<label for=\"c.nombre\">Ordenar por nombre de cliente</label><input type=\"radio\" name=\"orden\" value=\"c.nombre\" required=\"required\"><br>
+				<label for=\"t.precio\">Ordenar por precio</label><input type=\"radio\" name=\"orden\" value=\"t.precio\" required=\"required\">
+			</form>
+		</div>";
+	}
+		
+	 ?>
 	
-	<div id="searchbar">
-		<form name="buscartrabajos" action="buscarTrabajos.php">
-			<input type="text" name="textobusqueda" title="Título, nombre de cliente o precio" required="required">
-			<input type="submit"><br>
-			<label for="c.nombre">Ordenar por nombre de cliente</label><input type="radio" name="orden" value="c.nombre" required="required"><br>
-			<label for="t.precio">Ordenar por precio</label><input type="radio" name="orden" value="t.precio" required="required">
-		</form>
-	</div>
 	<?php 
     	mapaweb("php");
      ?>
@@ -43,46 +55,80 @@
 			 * Se obtiene la información necesaria de los trabajos,
 			 * relacionándolos con los clientes adecuados.
 			 */
-			$consulta = "SELECT t.id,t.titulo,t.imagen,c.nombre from trabajos t,clientes c where t.id_cliente = c.id order by id desc;";
+			if(isset($_GET["c"])){
+				$consulta = "SELECT t.id,t.titulo,t.imagen,c.nombre from trabajos t,clientes c where t.id_cliente = c.id and c.id = '$userId' order by id desc;";
+			}else{
+				$consulta = "SELECT t.id,t.titulo,t.imagen,c.nombre from trabajos t,clientes c where t.id_cliente = c.id order by id desc;";
+			}
 
 			$datos = mysqli_query($conector,$consulta);
 
 			$resultado = mysqli_fetch_array($datos,MYSQLI_ASSOC);
+			if(!isset($_GET["c"])){
+				echo "<table style='border-collapse:collapse;'><tr><td>Miniatura</td><td>Título</td><td>Cliente</td><td>Editar trabajo</td><td>Ver trabajo</td><td>Borrar trabajo</td></tr>";
 
-			echo "<table style='border-collapse:collapse;'><tr><td>Miniatura</td><td>Título</td><td>Cliente</td><td>Editar trabajo</td><td>Ver trabajo</td><td>Borrar trabajo</td></tr>";
-
-			while(!is_null($resultado)){
-				if($resultado["nombre"]=="Disponible"){
-					echo "<tr class=\"disponible\"><td><img src=\"../../img/trabajos/$resultado[imagen]\" alt=\"$resultado[titulo]\" width=\"40px\"></td><td>$resultado[titulo]</td><td>$resultado[nombre]</td><td><form action=\"editarTrabajo.php\" method=\"post\">
-					<input type='hidden' name='t' value='$resultado[id]'>
-		<input type=\"submit\" name=\"editarTrabajo\" value=\"Editar\" class=\"botonEditar\">
-	</form></td><td><form action=\"verTrabajo.php\" method=\"post\">
-					<input type='hidden' name='t' value='$resultado[id]'>
-		<input type=\"submit\" name=\"verTrabajo\" value=\"Ver\" class=\"botonEditar\">
-	</form></td><td><input type=\"button\" name=\"borrarTrabajo\" value=\"Borrar\" onClick=\"confirmDelete('trabajos','borrarTrabajo.php?t=$resultado[id]&img=$resultado[imagen]')\"></td></tr>";
-					$resultado = mysqli_fetch_array($datos,MYSQLI_ASSOC);
-				}else{
-					echo "<tr><td><img src=\"$resultado[imagen]\" alt=\"$resultado[titulo]\" width=\"40px\"></td><td>$resultado[titulo]</td><td>$resultado[nombre]</td><td><form action=\"editarTrabajo.php\" method=\"post\">
-					<input type='hidden' name='t' value='$resultado[id]'>
-		<input type=\"submit\" name=\"editarTrabajo\" value=\"Editar\" class=\"botonEditar\" disabled>
-	</form></td><td><form action=\"verTrabajo.php\" method=\"post\">
-					<input type='hidden' name='t' value='$resultado[id]'>
-		<input type=\"submit\" name=\"verTrabajo\" value=\"Ver\" class=\"botonEditar\">
-	</form></td><td><input type=\"button\" name=\"borrarTrabajo\" value=\"Borrar\" onClick=\"confirmDelete('trabajos','borrarTrabajo.php?t=$resultado[id]&img=$resultado[imagen]')\">
-	</form></td></tr>";
-					$resultado = mysqli_fetch_array($datos,MYSQLI_ASSOC);
+				while(!is_null($resultado)){
+					if($resultado["nombre"]=="Disponible"){
+						echo "<tr class=\"disponible\"><td><img src=\"../../img/trabajos/$resultado[imagen]\" alt=\"$resultado[titulo]\" width=\"40px\"></td><td>$resultado[titulo]</td><td>$resultado[nombre]</td><td><form action=\"editarTrabajo.php\" method=\"post\">
+						<input type='hidden' name='t' value='$resultado[id]'>
+			<input type=\"submit\" name=\"editarTrabajo\" value=\"Editar\" class=\"botonEditar\">
+		</form></td><td><form action=\"verTrabajo.php\" method=\"post\">
+						<input type='hidden' name='t' value='$resultado[id]'>
+			<input type=\"submit\" name=\"verTrabajo\" value=\"Ver\" class=\"botonEditar\">
+		</form></td><td><input type=\"button\" name=\"borrarTrabajo\" value=\"Borrar\" onClick=\"confirmDelete('trabajos','borrarTrabajo.php?t=$resultado[id]&img=$resultado[imagen]')\"></td></tr>";
+						$resultado = mysqli_fetch_array($datos,MYSQLI_ASSOC);
+					}else{
+						echo "<tr><td><img src=\"$resultado[imagen]\" alt=\"$resultado[titulo]\" width=\"40px\"></td><td>$resultado[titulo]</td><td>$resultado[nombre]</td><td><form action=\"editarTrabajo.php\" method=\"post\">
+						<input type='hidden' name='t' value='$resultado[id]'>
+			<input type=\"submit\" name=\"editarTrabajo\" value=\"Editar\" class=\"botonEditar\" disabled>
+		</form></td><td><form action=\"verTrabajo.php\" method=\"post\">
+						<input type='hidden' name='t' value='$resultado[id]'>
+			<input type=\"submit\" name=\"verTrabajo\" value=\"Ver\" class=\"botonEditar\">
+		</form></td><td><input type=\"button\" name=\"borrarTrabajo\" value=\"Borrar\" onClick=\"confirmDelete('trabajos','borrarTrabajo.php?t=$resultado[id]&img=$resultado[imagen]')\">
+		</form></td></tr>";
+						$resultado = mysqli_fetch_array($datos,MYSQLI_ASSOC);
+					}
+					
+					
 				}
-				
-				
-			}
 
-			echo "</table>";
-			mysqli_close($conector);
+				echo "</table>";
+				mysqli_close($conector);
+			}else{
+				echo "<table style='border-collapse:collapse;'><tr><td>Miniatura</td><td>Título</td><td>Cliente</td><td>Ver trabajo</td></tr>";
+
+				while(!is_null($resultado)){
+					if($resultado["nombre"]=="Disponible"){
+						echo "<tr class=\"disponible\"><td><img src=\"../../img/trabajos/$resultado[imagen]\" alt=\"$resultado[titulo]\" width=\"40px\"></td><td>$resultado[titulo]</td><td>$resultado[nombre]</td><td><form action=\"verTrabajo.php\" method=\"post\">
+						<input type='hidden' name='t' value='$resultado[id]'>
+			<input type=\"submit\" name=\"verTrabajo\" value=\"Ver\" class=\"botonEditar\">
+		</form></td></tr>";
+						$resultado = mysqli_fetch_array($datos,MYSQLI_ASSOC);
+					}else{
+						echo "<tr><td><img src=\"$resultado[imagen]\" alt=\"$resultado[titulo]\" width=\"40px\"></td><td>$resultado[titulo]</td><td>$resultado[nombre]</td><td><form action=\"verTrabajo.php\" method=\"post\">
+						<input type='hidden' name='t' value='$resultado[id]'>
+			<input type=\"submit\" name=\"verTrabajo\" value=\"Ver\" class=\"botonEditar\">
+		</form></td></tr>";
+						$resultado = mysqli_fetch_array($datos,MYSQLI_ASSOC);
+					}
+					
+					
+				}
+
+				echo "</table>";
+				mysqli_close($conector);
+			}
 		?>
 	</div>
-	<form action="crearNuevoTrabajo.php" method="post" class="botonCrear">
-		<input type="submit" name="crearTrabajo" value="+" >
-	</form>
+	<?php 
+	if (!isset($_GET["c"])) {
+		echo "<form action=\"crearNuevoTrabajo.php\" method=\"post\" class=\"botonCrear\">
+				<input type=\"submit\" name=\"crearTrabajo\" value=\"+\" >
+			</form>";
+	}
+		
+	 ?>
+	
 	<?php 
 		contextmenu("trabajos");
 	?>
