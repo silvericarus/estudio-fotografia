@@ -1,3 +1,8 @@
+<?php 
+session_start();
+include "php/conectarServidor.php";
+$userId = getId();
+ ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -18,11 +23,10 @@
 		<div class="row">
 			
 				<?php 
-					include 'php/conectarServidor.php';
 					/**
 					 * Se llama a la función que crea el menú con / como parámetro 'ruta'
 					 */
-					menu("/");
+					menu("/",$userId);
 				?>
 			
 		</div>
@@ -32,7 +36,7 @@
     </button> 
 	<div class="container">
 		<div class="row">
-			<div class="col-12 offset-3 content">
+			<div class="col-12 offset-3 content bg-dark">
 				<section>
 					<h2>Política de Cookies</h2>
 					<p>
@@ -113,7 +117,7 @@
         <i class="fas fa-chevron-up"></i>
     </button>
     	<?php 
-    		footer("/");
+    		footer("/",$userId);
     	 ?>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

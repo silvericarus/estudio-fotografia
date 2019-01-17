@@ -29,6 +29,15 @@ $userId = getId();
 		<?php 
 			menu("trabajos",$userId);
 		?>
+		<?php 
+		if (!isset($_GET["c"])) {
+			echo "
+			<div style=\"display: flex; justify-content: space-between;\">
+						<div></div>";
+		}
+		
+		 ?>
+		
 	<?php 
 	if (!isset($_GET["c"])) {
 		echo "<div id=\"searchbar\">
@@ -65,25 +74,25 @@ $userId = getId();
 
 			$resultado = mysqli_fetch_array($datos,MYSQLI_ASSOC);
 			if(!isset($_GET["c"])){
-				echo "<table style='border-collapse:collapse;'><tr><td>Miniatura</td><td>Título</td><td>Cliente</td><td>Editar trabajo</td><td>Ver trabajo</td><td>Borrar trabajo</td></tr>";
+				echo "<div class='container'><div class='row'><table class='table table-bordered table-dark col-6 offset-3'><tr><td>Miniatura</td><td>Título</td><td>Cliente</td><td>Editar trabajo</td><td>Ver trabajo</td><td>Borrar trabajo</td></tr>";
 
 				while(!is_null($resultado)){
 					if($resultado["nombre"]=="Disponible"){
-						echo "<tr class=\"disponible\"><td><img src=\"../../img/trabajos/$resultado[imagen]\" alt=\"$resultado[titulo]\" width=\"40px\"></td><td>$resultado[titulo]</td><td>$resultado[nombre]</td><td><form action=\"editarTrabajo.php\" method=\"post\">
+						echo "<tr class=\"bg-secondary disponible\"><td><img class='img-thumbnail' src=\"../../img/trabajos/$resultado[imagen]\" alt=\"$resultado[titulo]\" width=\"40px\"></td><td>$resultado[titulo]</td><td>$resultado[nombre]</td><td><form action=\"editarTrabajo.php\" method=\"post\">
 						<input type='hidden' name='t' value='$resultado[id]'>
 			<input type=\"submit\" name=\"editarTrabajo\" value=\"Editar\" class=\"botonEditar\">
 		</form></td><td><form action=\"verTrabajo.php\" method=\"post\">
 						<input type='hidden' name='t' value='$resultado[id]'>
-			<input type=\"submit\" name=\"verTrabajo\" value=\"Ver\" class=\"botonEditar\">
+			<button type=\"submit\" name=\"verTrabajo\" value=\"Ver\" class=\"btn btn-light btn-block\"><i class=\"far fa-eye\"></i></button>
 		</form></td><td><input type=\"button\" name=\"borrarTrabajo\" value=\"Borrar\" onClick=\"confirmDelete('trabajos','borrarTrabajo.php?t=$resultado[id]&img=$resultado[imagen]')\"></td></tr>";
 						$resultado = mysqli_fetch_array($datos,MYSQLI_ASSOC);
 					}else{
-						echo "<tr><td><img src=\"$resultado[imagen]\" alt=\"$resultado[titulo]\" width=\"40px\"></td><td>$resultado[titulo]</td><td>$resultado[nombre]</td><td><form action=\"editarTrabajo.php\" method=\"post\">
+						echo "<tr><td><img class='img-thumbnail' src=\"$resultado[imagen]\" alt=\"$resultado[titulo]\" width=\"40px\"></td><td>$resultado[titulo]</td><td>$resultado[nombre]</td><td><form action=\"editarTrabajo.php\" method=\"post\">
 						<input type='hidden' name='t' value='$resultado[id]'>
 			<input type=\"submit\" name=\"editarTrabajo\" value=\"Editar\" class=\"botonEditar\" disabled>
 		</form></td><td><form action=\"verTrabajo.php\" method=\"post\">
 						<input type='hidden' name='t' value='$resultado[id]'>
-			<input type=\"submit\" name=\"verTrabajo\" value=\"Ver\" class=\"botonEditar\">
+			<button type=\"submit\" name=\"verTrabajo\" value=\"Ver\" class=\"btn btn-light btn-block\"><i class=\"far fa-eye\"></i></button>
 		</form></td><td><input type=\"button\" name=\"borrarTrabajo\" value=\"Borrar\" onClick=\"confirmDelete('trabajos','borrarTrabajo.php?t=$resultado[id]&img=$resultado[imagen]')\">
 		</form></td></tr>";
 						$resultado = mysqli_fetch_array($datos,MYSQLI_ASSOC);
@@ -95,19 +104,19 @@ $userId = getId();
 				echo "</table>";
 				mysqli_close($conector);
 			}else{
-				echo "<table style='border-collapse:collapse;'><tr><td>Miniatura</td><td>Título</td><td>Cliente</td><td>Ver trabajo</td></tr>";
+				echo "<div class='container'><div class='row'><table class='table table-bordered table-dark col-6 offset-3'><tr><td>Miniatura</td><td>Título</td><td>Cliente</td><td>Ver trabajo</td></tr>";
 
 				while(!is_null($resultado)){
 					if($resultado["nombre"]=="Disponible"){
-						echo "<tr class=\"disponible\"><td><img src=\"../../img/trabajos/$resultado[imagen]\" alt=\"$resultado[titulo]\" width=\"40px\"></td><td>$resultado[titulo]</td><td>$resultado[nombre]</td><td><form action=\"verTrabajo.php\" method=\"post\">
+						echo "<tr class=\"bg-secondary disponible\"><td><img class='img-thumbnail' src=\"../../img/trabajos/$resultado[imagen]\" alt=\"$resultado[titulo]\" width=\"76px\"></td><td>$resultado[titulo]</td><td>$resultado[nombre]</td><td><form action=\"verTrabajo.php\" method=\"post\">
 						<input type='hidden' name='t' value='$resultado[id]'>
-			<input type=\"submit\" name=\"verTrabajo\" value=\"Ver\" class=\"botonEditar\">
+			<button type=\"submit\" name=\"verTrabajo\" value=\"Ver\" class=\"btn btn-light btn-block\"><i class=\"far fa-eye\"></i></button>
 		</form></td></tr>";
 						$resultado = mysqli_fetch_array($datos,MYSQLI_ASSOC);
 					}else{
-						echo "<tr><td><img src=\"$resultado[imagen]\" alt=\"$resultado[titulo]\" width=\"40px\"></td><td>$resultado[titulo]</td><td>$resultado[nombre]</td><td><form action=\"verTrabajo.php\" method=\"post\">
+						echo "<tr><td><img class='img-thumbnail' src=\"$resultado[imagen]\" alt=\"$resultado[titulo]\" width=\"76px\"></td><td>$resultado[titulo]</td><td>$resultado[nombre]</td><td><form action=\"verTrabajo.php\" method=\"post\">
 						<input type='hidden' name='t' value='$resultado[id]'>
-			<input type=\"submit\" name=\"verTrabajo\" value=\"Ver\" class=\"botonEditar\">
+			<button type=\"submit\" name=\"verTrabajo\" value=\"Ver\" class=\"btn btn-light btn-block\"><i class=\"far fa-eye\"></i></button>
 		</form></td></tr>";
 						$resultado = mysqli_fetch_array($datos,MYSQLI_ASSOC);
 					}
@@ -119,7 +128,13 @@ $userId = getId();
 				mysqli_close($conector);
 			}
 		?>
+
 	</div>
+	<?php 
+		if (!isset($_GET["c"])) {
+			echo "</div>";
+		}
+	?>
 	<?php 
 	if (!isset($_GET["c"])) {
 		echo "<form action=\"crearNuevoTrabajo.php\" method=\"post\" class=\"botonCrear\">
