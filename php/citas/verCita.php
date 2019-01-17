@@ -1,3 +1,8 @@
+<?php 
+session_start();
+include '../conectarServidor.php';
+$userId = getId();
+ ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -12,8 +17,8 @@
 <body>
 	
 		<?php 
-			include '../conectarServidor.php';
-			menu("citas");
+			
+			menu("citas",$userId);
 		?>
 	
 	<div class="content">
@@ -30,12 +35,15 @@
 			 * por fecha y por ese cliente, en caso contrario, se filtra sólo por
 			 * fecha.
 			 */
-			if(!isset($_GET["c"])){
+			if(!isset($_GET["c"])&&!isset($_GET["cl"])){
 				$fecha = $_GET["fecha"];
 				$consulta = "SELECT ci.id,ci.fecha,ci.hora,ci.motivo,ci.lugar,c.nombre,c.telefono1 from citas ci,clientes c where ci.id_cliente = c.id and ci.fecha = '$fecha' order by ci.hora asc;";
+			}else if (isset($_GET["cl"])) {
+				$fecha = $_GET["fecha"];
+				$consulta = "SELECT ci.id,ci.fecha,ci.hora,ci.motivo,ci.lugar,c.nombre,c.telefono1 from citas ci,clientes c where ci.id_cliente = c.id and ci.fecha = '$fecha' and c.id = $userId";
 			}else{
 				$fecha = convertirFecha($_GET["fecha"],false);
-				$consulta = "SELECT ci.id,ci.fecha,ci.hora,ci.motivo,ci.lugar,c.nombre,c.telefono1 from citas ci,clientes c where ci.id_cliente = c.id and ci.fecha = '$fecha' and ci.id = $_GET[c];";
+				$consulta = "SELECT ci.id,ci.fecha,ci.hora,ci.motivo,ci.lugar,c.nombre,c.telefono1 from citas ci,clientes c where ci.id_cliente = c.id and ci.fecha = '$fecha' and c.id = $_GET[c];";
 			}
 			
 
@@ -45,7 +53,7 @@
 			$resultado = mysqli_fetch_array($datos,MYSQLI_ASSOC);
 
 
-			$fechacita = explode("-",$resultado["fecha"]);
+			$fechacita = explode("-",$fecha);
 
 			$timestampcita = mktime($resultado["hora"],0,0,$fechacita[1],$fechacita[2],$fechacita[0]);
 
@@ -54,26 +62,43 @@
 				$resultado["fecha"] = convertirFecha($resultado["fecha"],true);
 				if ($timestampcita > $timestampactual) {
 
-				echo "<div>";
+				echo "<div class='container'><div class='row'><div class='col-6 offset-3 bg-dark'>";
 				echo "<h2>$resultado[motivo]</h2>";
-				echo "<p>En <b>$resultado[lugar]</b> el <b>$resultado[fecha]</b> a las <b>$resultado[hora]</b> horas, el cliente con el que te citas es <b>$resultado[nombre]</b>, su telefono de contacto es <b>$resultado[telefono1]</b></p>
-					<form action='editarCita.php' method='get'>
+				if (!isset($_GET["cl"])) {
+					echo "<p>En <b>$resultado[lugar]</b> el <b>$resultado[fecha]</b> a las <b>$resultado[hora]</b> horas, el cliente con el que te citas es <b>$resultado[nombre]</b>, su telefono de contacto es <b>$resultado[telefono1]</b></p>";
+				}else{
+					echo "<p>En <b>$resultado[lugar]</b> el <b>$resultado[fecha]</b> a las <b>$resultado[hora]</b> horas, si deseas hacer alguna consulta o cancelar esta cita, puedes contactarnos en <a href='mailto:ayuda@estudiofotografia.es' class='text-warning'>nuestro correo</a>.</p>";
+				}
+				
+				if(!isset($_GET["cl"])){
+					echo"<form action='editarCita.php' method='get'>
 						<input type='hidden' name='c' value='$resultado[id]'>
 						<input type='submit' name='editarCita' value='Editar'>
 					</form>
-					<input type='button' name='borrarCita' value='Borrar' onClick=\"confirmDelete('citas','borrarCita.php?c=$resultado[id]')\">
-					</div>";
+					<input type='button' name='borrarCita' value='Borrar' onClick=\"confirmDelete('citas','borrarCita.php?c=$resultado[id]')\">";
+				}
+					
+					echo "</div></div></div>";
 					$resultado = mysqli_fetch_array($datos,MYSQLI_ASSOC);
 				}else{
-					echo "<div>";
-					echo "<h2>$resultado[motivo]</h2>";
-					echo "<p>En <b>$resultado[lugar]</b> el <b>$resultado[fecha]</b> a las <b>$resultado[hora]</b> horas, el cliente con el que te citas es <b>$resultado[nombre]</b>, su telefono de contacto es <b>$resultado[telefono1]<br></b><i>Cita pasada</i></p>
-						<form action='editarCita.php' method='get'>
+					echo "<div class='container'><div class='row'><div class='col-6 offset-3 bg-dark'>";
+					if (!isset($_GET["cl"])) {
+						echo "<h2>$resultado[motivo]</h2>";
+						echo "<p>En <b>$resultado[lugar]</b> el <b>$resultado[fecha]</b> a las <b>$resultado[hora]</b> horas, el cliente con el que te citas es <b>$resultado[nombre]</b>, su telefono de contacto es <b>$resultado[telefono1]<br></b><i>Cita pasada</i></p>";
+					}else{
+						echo "<h2>$resultado[motivo]</h2>";
+						echo "<p>En <b>$resultado[lugar]</b> el <b>$resultado[fecha]</b> a las <b>$resultado[hora]</b> horas, si deseas hacer alguna consulta o cancelar esta cita, puedes contactarnos en <a href='mailto:ayuda@estudiofotografia.es' class='text-warning'>nuestro correo</a>.<br><i>Cita pasada</i></p>";
+					}
+					
+						if (!isset($_GET["cl"])) {
+							echo "<form action='editarCita.php' method='get'>
 						<input type='hidden' name='c' value='$resultado[id]'>
 							<input type='submit' name='editarCita' value='Editar' disabled>
 						</form>
-						<input type='button' name='borrarCita' value='Borrar' onClick=\"confirmDelete('citas','borrarCita.php?c=$resultado[id]')\" disabled>
-						</div>";
+						<input type='button' name='borrarCita' value='Borrar' onClick=\"confirmDelete('citas','borrarCita.php?c=$resultado[id]')\" disabled>";
+						}
+						
+						echo "</div></div></div>";
 						$resultado = mysqli_fetch_array($datos,MYSQLI_ASSOC);
 				}
 			}

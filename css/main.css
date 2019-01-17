@@ -3,22 +3,18 @@
 
 #searchbar{
 	box-shadow: 2px 2px 5px;
-    position: absolute;
-    top: 57px;
-    right: 5px;
     background-color: #494949;
     color: #faf6e9;
+    order: 2;
+    height: fit-content;
 }
 
 .content{
-	display: table;
-    margin-right:auto;
-    margin-left: auto;
     color: #faf6e9; 
     font-family: "Amiri",serif;
 }
 
-.content>table{
+/*.content>table{
   background-color: #494949;
 	border: 2px solid black;
 	border-collapse: collapse;
@@ -27,7 +23,7 @@
 	border: 2px solid black;
 	padding: 10px;
     text-align: center;
-}
+}*/
 .botonEditar{
 	display: inline-block;
     width: 100%;
@@ -267,7 +263,6 @@ button[disabled="false"]:hover .next {
 
 .disponible{
   color:black;
- background: linear-gradient(to left, #ece8d9 0%, #fffdf6 100%);
 }
 
 .help{

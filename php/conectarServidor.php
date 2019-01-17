@@ -56,7 +56,7 @@
     					</ul>
 
   					</div>
-  					<form id='cerrarSesion' action='php/cerrarSesion.php' method='post'>
+  					<form id='cerrarSesion' action='php/utils/cerrarSesion.php' method='post'>
   						<button type='submit' class='btn btn-light' form='cerrarSesion'>Cerrar sesión de Administrador</button>
   					</form>
 				</nav>";
@@ -75,7 +75,7 @@
   					<div class=\"collapse navbar-collapse\" id=\"navbarCollapse\">
     					<ul class=\"navbar-nav\">
     						<li class=\"nav-item\">
-      							<a class=\"nav-item nav-link text-light\" href=\"php/datos.php\">Mis Datos</a>
+      							<a class=\"nav-item nav-link text-light\" href=\"php/utils/datos.php\">Mis Datos</a>
       						</li>
       						<li class=\"nav-item\">
       						<a class=\"nav-item nav-link text-light\" href=\"php/trabajos/trabajos.php?c=true\">Mis Trabajos</a>
@@ -92,7 +92,7 @@
     					</ul>
 
   					</div>
-  					<form id='cerrarSesion' action='php/cerrarSesion.php' method='post'>
+  					<form id='cerrarSesion' action='php/utils/cerrarSesion.php' method='post'>
   						<button type='submit' class='btn btn-light' form='cerrarSesion'>Cerrar sesión de $resul[nombre]</button>
   					</form>
 				</nav>";
@@ -329,7 +329,7 @@
 			<div style='display:flex;justify-content:space-between;'>
 			<ul>
 				<li><a href=\"index.php\" class='text-warning'>Inicio</a></li>
-				<li><a href=\"php/datos.php\" class='text-warning'>Mis Datos</a></li>
+				<li><a href=\"php/utils/datos.php\" class='text-warning'>Mis Datos</a></li>
 				<li><a href=\"php/trabajos/trabajos.php?c=true\" class='text-warning'>Mis Trabajos</a></li>
 				<li><a href=\"php/citas/citas.php?c=true\" class='text-warning'>Mis Citas</a></li>
 				<li><a href=\"php/trabajos/trabajos.php\" class='text-warning'>Trabajos Disponibles</a></li>
@@ -368,7 +368,7 @@
 			<div style='display:flex;justify-content:space-between;'>
 			<ul>
 				<li><a href=\"../../index.php\" class='text-warning'>Inicio</a></li>
-				<li><a href=\"../datos.php\" class='text-warning'>Mis Datos</a></li>
+				<li><a href=\"../utils/datos.php\" class='text-warning'>Mis Datos</a></li>
 				<li><a href=\"../trabajos/trabajos.php?c=true\" class='text-warning'>Mis Trabajos</a></li>
 				<li><a href=\"../citas/citas.php?c=true\" class='text-warning'>Mis Citas</a></li>
 				<li><a href=\"../trabajos/trabajos.php\" class='text-warning'>Trabajos Disponibles</a></li>
@@ -422,6 +422,18 @@
 			return false;
 	}
 
+	function busca_citas_id ($fecha,$id)
+	{
+		$cone = conectarServer();
+		$consulta = "select id_cliente from citas where fecha = '$fecha' and id_cliente = '$id'";
+		$datos = mysqli_query($cone, $consulta);
+
+		if(mysqli_num_rows($datos)>0)
+			return true;
+		else
+			return false;
+	}
+
 	function archivo_id($archivo){
 		$nombrearchivo = explode(".",$archivo);
 
@@ -431,6 +443,14 @@
 	function num_citas ($fecha){
 		$conector = conectarServer();
 		$consulta = "SELECT COUNT(id) citas from citas where fecha = '$fecha'";
+		$datos = mysqli_query($conector,$consulta);
+		$resultado = mysqli_fetch_array($datos,MYSQLI_ASSOC);
+		return $resultado["citas"];
+	}
+
+	function num_citas_id ($fecha,$id){
+		$conector = conectarServer();
+		$consulta = "SELECT COUNT(id) citas from citas where fecha = '$fecha' and id_cliente = $id";
 		$datos = mysqli_query($conector,$consulta);
 		$resultado = mysqli_fetch_array($datos,MYSQLI_ASSOC);
 		return $resultado["citas"];
