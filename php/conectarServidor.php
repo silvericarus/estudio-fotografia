@@ -84,7 +84,7 @@
       						<a class=\"nav-item nav-link text-light\" href=\"php/citas/citas.php?c=true\">Mis Citas</a>
       						</li>
       						<li class=\"nav-item\">
-      						<a class=\"nav-item nav-link text-light\" href=\"php/trabajos/trabajos.php\">Trabajos Disponibles</a>
+      						<a class=\"nav-item nav-link text-light\" href=\"php/trabajos/trabajos.php?show=available\">Trabajos Disponibles</a>
       						</li>
       						<li class=\"nav-item\">
       						<a class=\"nav-item nav-link disabled\" href=\"#\">Contacto</a>
@@ -174,7 +174,7 @@
       						<a class=\"nav-item nav-link text-light\" href=\"../citas/citas.php?c=true\">Mis Citas</a>
       						</li>
       						<li class=\"nav-item\">
-      						<a class=\"nav-item nav-link text-light\" href=\"../trabajos/trabajos.php\">Trabajos Disponibles</a>
+      						<a class=\"nav-item nav-link text-light\" href=\"../trabajos/trabajos.php?show=available\">Trabajos Disponibles</a>
       						</li>
       						<li class=\"nav-item\">
       						<a class=\"nav-item nav-link disabled\" href=\"#\">Contacto</a>

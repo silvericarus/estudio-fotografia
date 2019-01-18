@@ -30,7 +30,7 @@ $userId = getId();
 			menu("trabajos",$userId);
 		?>
 		<?php 
-		if (!isset($_GET["c"])) {
+		if (!isset($_GET["c"])&&!isset($_GET["show"])) {
 			echo "
 			<div style=\"display: flex; justify-content: space-between;\">
 						<div></div>";
@@ -39,7 +39,7 @@ $userId = getId();
 		 ?>
 		
 	<?php 
-	if (!isset($_GET["c"])) {
+	if (!isset($_GET["c"])&&!isset($_GET["show"])) {
 		echo "<div id=\"searchbar\">
 			<form name=\"buscartrabajos\" action=\"buscarTrabajos.php\">
 				<input type=\"text\" name=\"textobusqueda\" title=\"Título, nombre de cliente o precio\" required=\"required\">
@@ -66,6 +66,8 @@ $userId = getId();
 			 */
 			if(isset($_GET["c"])){
 				$consulta = "SELECT t.id,t.titulo,t.imagen,c.nombre from trabajos t,clientes c where t.id_cliente = c.id and c.id = '$userId' order by id desc;";
+			}elseif (isset($_GET["show"])) {
+				$consulta = "SELECT t.id,t.titulo,t.imagen,c.nombre from trabajos t,clientes c where t.id_cliente = c.id and c.id = 0 order by id desc;";
 			}else{
 				$consulta = "SELECT t.id,t.titulo,t.imagen,c.nombre from trabajos t,clientes c where t.id_cliente = c.id order by id desc;";
 			}
@@ -73,7 +75,7 @@ $userId = getId();
 			$datos = mysqli_query($conector,$consulta);
 
 			$resultado = mysqli_fetch_array($datos,MYSQLI_ASSOC);
-			if(!isset($_GET["c"])){
+			if(!isset($_GET["c"])&&!isset($_GET["show"])){
 				echo "<div class='container'><div class='row'><table class='table table-bordered table-dark col-6 offset-3'><tr><td>Miniatura</td><td>Título</td><td>Cliente</td><td>Editar trabajo</td><td>Ver trabajo</td><td>Borrar trabajo</td></tr>";
 
 				while(!is_null($resultado)){
@@ -131,12 +133,12 @@ $userId = getId();
 
 	</div>
 	<?php 
-		if (!isset($_GET["c"])) {
+		if (!isset($_GET["c"])&&!isset($_GET["show"])) {
 			echo "</div>";
 		}
 	?>
 	<?php 
-	if (!isset($_GET["c"])) {
+	if (!isset($_GET["c"])&&!isset($_GET["show"])) {
 		echo "<form action=\"crearNuevoTrabajo.php\" method=\"post\" class=\"botonCrear\">
 				<input type=\"submit\" name=\"crearTrabajo\" value=\"+\" >
 			</form>";
