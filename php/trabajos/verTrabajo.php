@@ -1,3 +1,8 @@
+<?php 
+session_start();
+include '../conectarServidor.php';
+$userId = getId();
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -16,8 +21,7 @@
 <body>
 	
 		<?php 
-			include '../conectarServidor.php';
-			menu("trabajos");
+			menu("trabajos",$userId);
 		?>
 	
 	<button title="Ir abajo" class="scrolldown">
@@ -38,9 +42,9 @@
 
 			$resultado = mysqli_fetch_array($datos,MYSQLI_ASSOC);
 
-			echo "<div>";
-			echo "<img src=\"$resultado[imagen]\" alt=\"$resultado[titulo]\" width=\"800px\"><h2>$resultado[titulo]</h2>";
-			echo "<p>$resultado[descripcion]<br>Precio:<b>$resultado[precio]</b></p></div>";
+			echo "<div class='container'><div class='row'><div class='col-6 offset-3 bg-dark'>";
+			echo "<img src=\"$resultado[imagen]\" alt=\"$resultado[titulo]\" style='width:inherit;'><h2>$resultado[titulo]</h2>";
+			echo "<p>$resultado[descripcion]<br>Precio:<b>$resultado[precio]</b></p></div></div></div>";
 			mysqli_close($conector);
 		?>
 	</div>
