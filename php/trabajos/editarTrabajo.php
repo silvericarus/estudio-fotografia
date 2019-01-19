@@ -1,3 +1,8 @@
+<?php 
+session_start();
+include '../conectarServidor.php';
+$userId = getId();
+ ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -10,9 +15,8 @@
 </head>
 <body>
 	
-		<?php 
-			include '../conectarServidor.php';
-			menu("trabajos");
+		<?php
+			menu("trabajos",$userId);
 		?>
 	
 	<?php 
@@ -29,15 +33,17 @@
 
 		$datos2 = mysqli_query($conector,$consulta2);
 		$resultado2 = mysqli_fetch_array($datos2,MYSQLI_ASSOC);
-		echo "<div class=\"form\">";
+		echo "<div class=\"container\">
+		<div class=\"row\">
+			<div class=\"col-6 offset-3 bg-dark text-light\">";
 		echo "<form action=\"actualizarTrabajo.php\" method=\"post\"><input type='hidden' name='t' value='$id'>";
-		echo "<span class=\"campo\"><label for=\"propietario\">Cliente al que se ha vendido el trabajo $resultado[titulo]</label><select name=\"propietario\">";
+		echo "<div class='form-row'><div class='form-group col-12'><label for=\"propietario\">Cliente al que se ha vendido el trabajo $resultado[titulo]</label><select name=\"propietario\">";
 		while(!is_null($resultado2)){
 			echo "<option value=\"$resultado2[id]\">$resultado2[nombre]</option>";
 			$resultado2 = mysqli_fetch_array($datos2,MYSQLI_ASSOC);
 		}
-		echo "</select></span><br>";
-		echo "<span class=\"campo\"><input type=\"submit\" value=\"Modificar\"></span>";
+		echo "</select></div></div>";
+		echo "<div class='form-row'><div class='form-group col-12'><input type=\"submit\" class='btn btn-light btn-block' value=\"Modificar\"></div></div>";
 		echo "</form>";
 		echo "</div>";
 		mysqli_close($conector);

@@ -125,7 +125,7 @@
 					<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbar\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
     					<span class=\"navbar-toggler-icon\"></span>
   					</button>
-  					<a class=\"navbar-brand\" href=\"../index.php\"><img src=\"../img/logo.png\" alt=\"Logo de la empresa\" width=\"50px\" id=\"logoEmpresa\"></a>
+  					<a class=\"navbar-brand\" href=\"../../index.php\"><img src=\"../../img/logo.png\" alt=\"Logo de la empresa\" width=\"50px\" id=\"logoEmpresa\"></a>
   					<div class=\"collapse navbar-collapse\" id=\"navbarCollapse\">
     					<ul class=\"navbar-nav\">
     						<li class=\"nav-item\">

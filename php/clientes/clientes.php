@@ -1,3 +1,8 @@
+<?php 
+session_start();
+include '../conectarServidor.php';
+$userId = getId();
+ ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -17,62 +22,62 @@
 <body>
 	
 		<?php 
-			include '../conectarServidor.php';
 			/**
 			 * Se llama a la función que crea el menú con clientes como parámetro 'ruta'.
 			 */
-			menu("clientes");
+			menu("clientes",$userId);
 		?>
-	
-	<div id="searchbar">
-		<form name="buscarclientes" action="buscarClientes.php" method="get">
-			<input type="text" name="textobusqueda" title="Nombre, Apellidos o Teléfono primario" required="required">
-			<input type="submit"><br>
-			<label for="nombre">Ordenar por nombre</label><input type="radio" name="orden" value="nombre" required="required"><br>
-			<label for="apellidos">Ordenar por apellidos</label><input type="radio" name="orden" value="apellidos" required="required">
-		</form>
-	</div>
-	<?php 
-    	mapaweb("php");
-     ?>
-	<div class="content">
+	<div style="display: flex; justify-content: space-between;">
+		<div id="searchbar" class="d-none d-lg-block">
+			<form name="buscarclientes" action="buscarClientes.php" method="get">
+				<input type="text" name="textobusqueda" title="Nombre, Apellidos o Teléfono primario" required="required">
+				<input type="submit"><br>
+				<label for="nombre">Ordenar por nombre</label><input type="radio" name="orden" value="nombre" required="required"><br>
+				<label for="apellidos">Ordenar por apellidos</label><input type="radio" name="orden" value="apellidos" required="required">
+			</form>
+		</div>
 		<?php 
+	    	mapaweb("php");
+	     ?>
+		<div class="content">
+			<?php 
 
-			$conector = conectarServer();
+				$conector = conectarServer();
 
-			/**
-			 * Se almacena en $consulta la consulta para 
-			 * traerse todos los clientes menos el 0, que es
-			 * un cliente interno necesario para el funcionamiento
-			 * de la aplicación.
-			 */
-			$consulta = "SELECT * from clientes where id > 0;";
+				/**
+				 * Se almacena en $consulta la consulta para 
+				 * traerse todos los clientes menos el 0, que es
+				 * un cliente interno necesario para el funcionamiento
+				 * de la aplicación.
+				 */
+				$consulta = "SELECT * from clientes where id > 0;";
 
-			$datos = mysqli_query($conector,$consulta);
+				$datos = mysqli_query($conector,$consulta);
 
-			$resultado = mysqli_fetch_array($datos,MYSQLI_ASSOC);
-
-			echo "<table><tr><td>Nombre</td><td>Apellidos</td><td>Dirección</td><td>Teléfono</td><td>Teléfono 2</td><td>Nick</td><td>Contraseña</td><td>Editar cliente</td></tr>";
-			/**
-			 * En el caso de pulsar el boton de editarCliente, te 
-			 * ejecuta el archivo editarCliente.php pasándole como
-			 * parámetro a la url el id del cliente a editar.
-			 */
-			while(!is_null($resultado)){
-				echo "<tr><td>$resultado[nombre]</td><td>$resultado[apellidos]</td><td>$resultado[direccion]</td><td>$resultado[telefono1]</td><td>$resultado[telefono2]</td><td>$resultado[nick]</td><td>$resultado[contraseña]</td><td><form action=\"editarCliente.php\" method=\"get\">
-				<input type='hidden' name='c' value='$resultado[id]'>
-		<input type=\"submit\" name=\"editarCliente\" value=\"Editar\" class=\"botonEditar\">
-	</form></td></tr>";
 				$resultado = mysqli_fetch_array($datos,MYSQLI_ASSOC);
-				
-			}
 
-			echo "</table>";
-			mysqli_close($conector);
-		?>
+				echo "<div class='container'><div class='row'><table class='table table-bordered table-dark col-6 offset-3'><tr><td>Nombre</td><td>Apellidos</td><td>Dirección</td><td>Teléfono</td><td>Teléfono 2</td><td>Nick</td><td>Contraseña</td><td>Editar cliente</td></tr>";
+				/**
+				 * En el caso de pulsar el boton de editarCliente, te 
+				 * ejecuta el archivo editarCliente.php pasándole como
+				 * parámetro a la url el id del cliente a editar.
+				 */
+				while(!is_null($resultado)){
+					echo "<tr><td>$resultado[nombre]</td><td>$resultado[apellidos]</td><td>$resultado[direccion]</td><td>$resultado[telefono1]</td><td>$resultado[telefono2]</td><td>$resultado[nick]</td><td>$resultado[contraseña]</td><td><form action=\"editarCliente.php\" method=\"get\">
+					<input type='hidden' name='c' value='$resultado[id]'>
+			<input type=\"submit\" name=\"editarCliente\" value=\"Editar\" class=\"btn btn-light btn-block\">
+		</form></td></tr>";
+					$resultado = mysqli_fetch_array($datos,MYSQLI_ASSOC);
+					
+				}
+
+				echo "</table></div></div>";
+				mysqli_close($conector);
+			?>
+		</div>
 	</div>
 	<form action="crearNuevoCliente.php" method="post" class="botonCrear">
-		<input type="submit" name="crearCliente" value="+" >
+		<button type='submit' name='crearCliente' value='+' class="btn btn-dark rounded-circle" ><i class="fas fa-plus"></i></button>
 	</form>
 	<?php 
 		contextmenu("clientes");

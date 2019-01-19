@@ -183,7 +183,7 @@ $userId = getId();
 	<?php 
 	if (!isset($_GET["c"])) {
 	echo "<form action=\"crearNuevaCita.php\" method=\"post\" class=\"botonCrear\">
-		<input type=\"submit\" name=\"crearCita\" value=\"+\" >
+		<button type='submit' name='crearCita' value='+' class=\"btn btn-dark rounded-circle\" ><i class=\"fas fa-plus\"></i></button>
 	</form>";
 	}
 		
