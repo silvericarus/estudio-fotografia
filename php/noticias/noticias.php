@@ -1,3 +1,8 @@
+<?php 
+session_start();
+include '../conectarServidor.php';
+$userId = getId(); 
+?>
 <!DOCTYPE html>
 <html lang='es'>
 <head>
@@ -18,90 +23,94 @@
 <body>
 	
 		<?php 
-			include '../conectarServidor.php';
-			menu('noticias');
+			menu('noticias',$userId);
 		?>
-	
-	<div id="searchbar">
-		<form name='buscarnoticias' action='buscarNoticias.php' method='get'>
-			<input type='text' name='textobusqueda' title="Titular o Fecha de activación en formato 30/12/1996" required="required">
-			<input type='submit'><br>
-			<label for="titular">Ordenar por titular</label><input type="radio" name="orden" value="titular" required="required"><br>
-			<label for="fecha">Ordenar por fecha</label><input type="radio" name="orden" value="fecha" required="required">
-		</form>
-	</div>
+	<div style="display: flex; justify-content: space-between;">
+		<div></div>
+		<div id="searchbar">
+			<form name='buscarnoticias' action='buscarNoticias.php' method='get'>
+				<input type='text' name='textobusqueda' title="Titular o Fecha de activación en formato 30/12/1996" required="required">
+				<input type='submit'><br>
+				<label for="titular">Ordenar por titular</label><input type="radio" name="orden" value="titular" required="required"><br>
+				<label for="fecha">Ordenar por fecha</label><input type="radio" name="orden" value="fecha" required="required">
+			</form>
+		</div>
 	<?php 
     	mapaweb("php");
      ?>
-	<div class='content'>
-		<?php 
+		<div class='content'>
+			<?php 
 
-			$conector = conectarServer();
+				$conector = conectarServer();
 
-			/**
-			 * Se obtiene la información necesaria de las noticias.
-			 */
-			$fila = 0;
-			$pag=0;
-			if (!isset($_GET['page'])) {
-				
-			}else{
-				$pag = $_GET['page'];
-				$fila = 4 * $pag;
-			}
-
-			$consulta = "SELECT id,imagen,titular from noticias order by fecha desc limit $fila,4";
-			$consulta2 = "SELECT count(id) filas from noticias;";
-
-			$datos = mysqli_query($conector,$consulta);
-
-
-			$resultado = mysqli_fetch_array($datos,MYSQLI_ASSOC);
-
-			$resultados = mysqli_num_rows($datos);
-
-			$datos2 = mysqli_query($conector,$consulta2);
-
-			$resultado2 = mysqli_fetch_array($datos2,MYSQLI_ASSOC);
-
-			echo "<table><tr><td>Imagen</td><td>Títular</td><td>Ver más</td><td>Borrar Noticia</td></tr>";
-
-			while(!is_null($resultado)){
-					echo "<tr><td><img src='../../img/noticias/$resultado[imagen]' alt='$resultado[titular]' width='40px'></td><td>$resultado[titular]</td><td><form action='verNoticia.php' method='post'>
-					<input type='hidden' name='n' value='$resultado[id]'>
-		<input type='submit' name='verNoticia' value='Ver' class='botonEditar'>
-	</form></td><td><input type='button' name='borrarTrabajo' value='Borrar' onClick=\"confirmDelete('noticias','borrarNoticia.php?t=$resultado[id]&img=$resultado[imagen]')\"></td></tr>";
-					$resultado = mysqli_fetch_array($datos,MYSQLI_ASSOC);
+				/**
+				 * Se obtiene la información necesaria de las noticias.
+				 */
+				$fila = 0;
+				$pag=0;
+				if (!isset($_GET['page'])) {
+					
+				}else{
+					$pag = $_GET['page'];
+					$fila = 4 * $pag;
 				}
 
-			echo '</table>';
-			$filamenos = $pag - 1;
-			if ($fila == 0) {
-				echo "<form action='noticias.php' method='get' ><input type='hidden' name='page' value='$filamenos'>
-		<input type='submit' name='anteriorPagina' value='<- Anterior' disabled>
-	</form>";
-			}else{
-				echo "<form action='noticias.php' method='get'><input type='hidden' name='page' value='$filamenos'>
-		<input type='submit' name='anteriorPagina' value='<- Anterior' >
-	</form>";
-			}
-			$filamas = $pag+1;
-			if ($resultado2["filas"]-$fila > 4) {
-				echo "<form action='noticias.php' method='get'>
-	<input type='hidden' name='page' value='$filamas'>
-		<input type='submit' name='siguientePagina' value='Siguiente ->' >
-	</form>";
-			}else{
-				echo "<form action='noticias.php' method='get'>
-	<input type='hidden' name='page' value='$filamas'>
-		<input type='submit' name='siguientePagina' value='Siguiente ->' disabled>
-	</form>";
-			}
-		mysqli_close($conector);
-		?>
+				$consulta = "SELECT id,imagen,titular from noticias order by fecha desc limit $fila,4";
+				$consulta2 = "SELECT count(id) filas from noticias;";
+
+				$datos = mysqli_query($conector,$consulta);
+
+
+				$resultado = mysqli_fetch_array($datos,MYSQLI_ASSOC);
+
+				$resultados = mysqli_num_rows($datos);
+
+				$datos2 = mysqli_query($conector,$consulta2);
+
+				$resultado2 = mysqli_fetch_array($datos2,MYSQLI_ASSOC);
+
+				echo "<div class='container'><div class='row'><table class='table table-bordered table-dark col-6 offset-3 mb-0'><tr><td>Imagen</td><td>Títular</td><td>Ver más</td><td>Borrar Noticia</td></tr>";
+
+				while(!is_null($resultado)){
+						echo "<tr><td><img src='../../img/noticias/$resultado[imagen]' alt='$resultado[titular]' width='40px'></td><td>$resultado[titular]</td><td><form action='verNoticia.php' method='post'>
+						<input type='hidden' name='n' value='$resultado[id]'>
+			<button type='submit' name='verNoticia' value='Ver' class='btn btn-light'><i class=\"far fa-eye\"></i></button>
+		</form></td><td><button type='button' name='borrarTrabajo' value='Borrar' onClick=\"confirmDelete('noticias','borrarNoticia.php?t=$resultado[id]&img=$resultado[imagen]')\" class='btn btn-light'><i class=\"far fa-trash-alt\"></i></button></td></tr>";
+						$resultado = mysqli_fetch_array($datos,MYSQLI_ASSOC);
+					}
+
+				echo "</table></div><div class='row'><div class='col-6 offset-3 bg-dark' style='justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    display: inline-flex;'>";
+				$filamenos = $pag - 1;
+				if ($fila == 0) {
+					echo "<form action='noticias.php' method='get' ><input type='hidden' name='page' value='$filamenos'>
+			<button type='submit' name='anteriorPagina' value='Anterior' disabled class='btn btn-dark'><i class=\"far fa-arrow-alt-circle-left\"></i></button>
+		</form>";
+				}else{
+					echo "<form action='noticias.php' method='get'><input type='hidden' name='page' value='$filamenos'>
+			<button type='submit' name='anteriorPagina' value='Anterior' class='btn btn-dark'><i class=\"far fa-arrow-alt-circle-left\"></i></button>
+		</form>";
+				}
+				$filamas = $pag+1;
+				if ($resultado2["filas"]-$fila > 4) {
+					echo "<form action='noticias.php' method='get'>
+		<input type='hidden' name='page' value='$filamas'>
+			<button type='submit' name='siguientePagina' value=' Siguiente' class='btn btn-dark'><i class=\"far fa-arrow-alt-circle-right\"></i></button>
+		</form></div></div>";
+				}else{
+					echo "<form action='noticias.php' method='get'>
+		<input type='hidden' name='page' value='$filamas'>
+			<button type='submit' name='siguientePagina' value=' Siguiente' class='btn btn-dark' disabled><i class=\"far fa-arrow-alt-circle-right\"></i></button>
+		</form></div></div></div>";
+				}
+			mysqli_close($conector);
+			?>
+		</div>
 	</div>
 	<form action='crearNuevaNoticia.php' method='post' class='botonCrear'>
-		<input type='submit' name='crearNoticia' value='+' >
+		<button type='submit' name='crearNoticia' value='+' class="btn btn-dark rounded-circle" ><i class="fas fa-plus"></i></button>
 	</form>
 	<?php 
 		contextmenu('noticias');

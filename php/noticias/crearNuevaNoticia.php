@@ -1,3 +1,8 @@
+<?php 
+session_start();
+include '../conectarServidor.php';
+$userId = getId();
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,37 +16,60 @@
 <body>
 	
 		<?php 
-			include '../conectarServidor.php';
-			menu("noticias");
+			menu("noticias",$userId);
 		?>
-	
-	<div class="form">
-		<?php 
-			$conector = conectarServer();
-			/**
-			* Se obtiene el siguiente código 
-			* que se le va a asignar automáticamente 
-			* a la nueva noticia que crearás.
-			*/
-				
-			$consulta = "SELECT AUTO_INCREMENT from information_schema.TABLES WHERE TABLE_SCHEMA = \"estudio\" and TABLE_NAME = \"noticias\";";
+	<div class="container">
+		<div class="row">
+			<div class="col-6 offset-3 bg-dark text-light">
+				<?php 
+					$conector = conectarServer();
+					/**
+					* Se obtiene el siguiente código 
+					* que se le va a asignar automáticamente 
+					* a la nueva noticia que crearás.
+					*/
+						
+					$consulta = "SELECT AUTO_INCREMENT from information_schema.TABLES WHERE TABLE_SCHEMA = \"estudio\" and TABLE_NAME = \"noticias\";";
 
-			$datos = mysqli_query($conector,$consulta);
-			$resultado = mysqli_fetch_array($datos,MYSQLI_ASSOC);
+					$datos = mysqli_query($conector,$consulta);
+					$resultado = mysqli_fetch_array($datos,MYSQLI_ASSOC);
 
-			echo "<form action=\"crearNoticia.php\" method=\"post\" enctype=\"multipart/form-data\">
-			<input type='hidden' name='n' value='$resultado[AUTO_INCREMENT]'>";
+					echo "<form action=\"crearNoticia.php\" method=\"post\" enctype=\"multipart/form-data\">
+					<input type='hidden' name='n' value='$resultado[AUTO_INCREMENT]'>";
 
-			echo "<span class=\"campo\"><label for=\"codigo\">Código</label><input type=\"text\" name=\"codigo\" value=\"$resultado[AUTO_INCREMENT]\" disabled></span><br>";
-			mysqli_close($conector);
-			?>
-			<span class="campo"><label for="titular">Títular *</label><input type="text" name="titular" maxlength="100" required="required"></span><br>
-			<span class="campo"><label for="contenido">Contenido *</label><textarea name="contenido" maxlength="1000" required="required"></textarea></span><br>
-			<span class="campo"><label for="imagen">Archivo *</label><input type="file" name="imagen" accept=".png,.jpg" required="required"></span><br>
-			<span class="campo"><label for="fecha">Fecha de activación *</label><input type="date" name="fecha" required="required"></span><br>
-			<span class="campo"><input type="submit" value="Crear"></span>
-		</form>
+					echo "<div class='form-row'><div class='form-group col-12'><label for=\"codigo\">Código</label><input type=\"text\" name=\"codigo\" value=\"$resultado[AUTO_INCREMENT]\" disabled></div></div>";
+					mysqli_close($conector);
+					?>
+					<div class='form-row'>
+						<div class='form-group col-4'>
+							<label for="titular">Títular</label>
+							<input type="text" name="titular" maxlength="100" required="required">
+						</div>
+						<div class='form-group col-8'>
+							<label for="contenido">Contenido</label>
+							<textarea name="contenido" maxlength="1000" required="required"></textarea>
+						</div>
+					</div>
+					<div class='form-row'>
+						<div class='form-group col-8'>
+							<label for="imagen">Archivo</label>
+							<input type="file" name="imagen" accept=".png,.jpg" required="required">
+						</div>
+						<div class='form-group col-4'>
+							<label for="fecha">Fecha de activación</label>
+							<input type="date" name="fecha" required="required">
+						</div>
+					</div>
+					<div class='form-row'>
+						<div class='form-group col-6 offset-3'>	
+							<button type="submit" value="Crear" class='btn btn-light btn-block'>Crear</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>	
 	</div>
+	
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>

@@ -82,20 +82,20 @@ $userId = getId();
 					if($resultado["nombre"]=="Disponible"){
 						echo "<tr class=\"bg-secondary disponible\"><td><img class='img-thumbnail' src=\"../../img/trabajos/$resultado[imagen]\" alt=\"$resultado[titulo]\" width=\"40px\"></td><td>$resultado[titulo]</td><td>$resultado[nombre]</td><td><form action=\"editarTrabajo.php\" method=\"post\">
 						<input type='hidden' name='t' value='$resultado[id]'>
-			<input type=\"submit\" name=\"editarTrabajo\" value=\"Editar\" class=\"botonEditar\">
+			<button type=\"submit\" name=\"editarTrabajo\" value=\"Editar\" class=\"btn btn-light btn-block\"><i class=\"far fa-edit\"></i></button>
 		</form></td><td><form action=\"verTrabajo.php\" method=\"post\">
 						<input type='hidden' name='t' value='$resultado[id]'>
 			<button type=\"submit\" name=\"verTrabajo\" value=\"Ver\" class=\"btn btn-light btn-block\"><i class=\"far fa-eye\"></i></button>
-		</form></td><td><input type=\"button\" name=\"borrarTrabajo\" value=\"Borrar\" onClick=\"confirmDelete('trabajos','borrarTrabajo.php?t=$resultado[id]&img=$resultado[imagen]')\"></td></tr>";
+		</form></td><td><button type=\"button\" name=\"borrarTrabajo\" value=\"Borrar\" class='btn btn-light btn-block' onClick=\"confirmDelete('trabajos','borrarTrabajo.php?t=$resultado[id]&img=$resultado[imagen]')\"><i class=\"far fa-trash-alt\"></i></button></td></tr>";
 						$resultado = mysqli_fetch_array($datos,MYSQLI_ASSOC);
 					}else{
 						echo "<tr><td><img class='img-thumbnail' src=\"$resultado[imagen]\" alt=\"$resultado[titulo]\" width=\"40px\"></td><td>$resultado[titulo]</td><td>$resultado[nombre]</td><td><form action=\"editarTrabajo.php\" method=\"post\">
 						<input type='hidden' name='t' value='$resultado[id]'>
-			<input type=\"submit\" name=\"editarTrabajo\" value=\"Editar\" class=\"botonEditar\" disabled>
+			<button type=\"submit\" name=\"editarTrabajo\" value=\"Editar\" class=\"btn btn-light btn-block\" disabled><i class=\"far fa-edit\"></i></button>
 		</form></td><td><form action=\"verTrabajo.php\" method=\"post\">
 						<input type='hidden' name='t' value='$resultado[id]'>
 			<button type=\"submit\" name=\"verTrabajo\" value=\"Ver\" class=\"btn btn-light btn-block\"><i class=\"far fa-eye\"></i></button>
-		</form></td><td><input type=\"button\" name=\"borrarTrabajo\" value=\"Borrar\" onClick=\"confirmDelete('trabajos','borrarTrabajo.php?t=$resultado[id]&img=$resultado[imagen]')\">
+		</form></td><td><button type=\"button\" name=\"borrarTrabajo\" value=\"Borrar\" class='btn btn-light btn-block' onClick=\"confirmDelete('trabajos','borrarTrabajo.php?t=$resultado[id]&img=$resultado[imagen]')\"><i class=\"far fa-trash-alt\"></i></button>
 		</form></td></tr>";
 						$resultado = mysqli_fetch_array($datos,MYSQLI_ASSOC);
 					}
@@ -140,7 +140,7 @@ $userId = getId();
 	<?php 
 	if (!isset($_GET["c"])&&!isset($_GET["show"])) {
 		echo "<form action=\"crearNuevoTrabajo.php\" method=\"post\" class=\"botonCrear\">
-				<input type=\"submit\" name=\"crearTrabajo\" value=\"+\" >
+				<button type='submit' name='crearTrabajo' value='+' class=\"btn btn-dark rounded-circle\" ><i class=\"fas fa-plus\"></i></button>
 			</form>";
 	}
 		

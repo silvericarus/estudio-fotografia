@@ -36,7 +36,7 @@ $userId = getId();
     </button> 
 	<div class="container">
 		<div class="row">
-			<div class="col-12 offset-3 content bg-dark">
+			<div class="col-12 content bg-dark">
 				<section>
 					<h2>Política de Cookies</h2>
 					<p>

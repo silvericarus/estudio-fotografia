@@ -1,3 +1,8 @@
+<?php 
+session_start(); 
+include '../conectarServidor.php';
+$userId = getId();
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,49 +15,71 @@
 </head>
 <body>
 	
-		<?php 
-			include '../conectarServidor.php';
-			menu("trabajos");
+		<?php
+			menu("trabajos",$userId);
 		?>
 	
-	<div class="form">
-		<?php 
-			$conector = conectarServer();
-			/**
-			* Se obtiene el siguiente código 
-			* que se le va a asignar automáticamente 
-			* al nuevo trabajo que crearás.
-			*/
-				
-			$consulta = "SELECT AUTO_INCREMENT from information_schema.TABLES WHERE TABLE_SCHEMA = \"estudio\" and TABLE_NAME = \"trabajos\";";
-			$consulta2 = "SELECT id,nombre from clientes;";
-
-			$datos = mysqli_query($conector,$consulta);
-			$resultado = mysqli_fetch_array($datos,MYSQLI_ASSOC);
-
-			$datos2 = mysqli_query($conector,$consulta2);
-			$resultado2 = mysqli_fetch_array($datos2,MYSQLI_ASSOC);
-
-			echo "<form action=\"crearTrabajo.php\" method=\"post\" enctype=\"multipart/form-data\"><input type='hidden' name='t' value='$resultado[AUTO_INCREMENT]'>";
-
-			echo "<span class=\"campo\"><label for=\"codigo\">Código</label><input type=\"text\" name=\"codigo\" value=\"$resultado[AUTO_INCREMENT]\" disabled></span><br>";
-			mysqli_close($conector);
-			?>
-			<span class="campo"><label for="titulo">Título</label><input type="text" name="titulo"></span><br>
-			<span class="campo"><label for="descripcion">Descripción</label><textarea name="descripcion"></textarea></span><br>
-			<span class="campo"><label for="precio">Precio</label><input type="text" name="precio"></textarea></span><br>
-			<span class="campo"><label for="id_cliente">Cliente</label><select name="id_cliente">
+	<div class="container">
+		<div class="row">
+			<div class="col-6 offset-3 bg-dark text-light">
 				<?php 
-					while(!is_null($resultado2)){
-						echo "<option value=\"$resultado2[id]\">$resultado2[nombre]</option>";
-						$resultado2 = mysqli_fetch_array($datos2,MYSQLI_ASSOC);
-					}
-				?>
-			</select></span><br>
-			<span class="campo"><label for="imagen">Archivo</label><input type="file" name="imagen"></span><br>
-			
-			<span class="campo"><input type="submit" value="Crear"></span>
-		</form>
+					$conector = conectarServer();
+					/**
+					* Se obtiene el siguiente código 
+					* que se le va a asignar automáticamente 
+					* al nuevo trabajo que crearás.
+					*/
+						
+					$consulta = "SELECT AUTO_INCREMENT from information_schema.TABLES WHERE TABLE_SCHEMA = \"estudio\" and TABLE_NAME = \"trabajos\";";
+					$consulta2 = "SELECT id,nombre from clientes;";
+
+					$datos = mysqli_query($conector,$consulta);
+					$resultado = mysqli_fetch_array($datos,MYSQLI_ASSOC);
+
+					$datos2 = mysqli_query($conector,$consulta2);
+					$resultado2 = mysqli_fetch_array($datos2,MYSQLI_ASSOC);
+
+					echo "<form action=\"crearTrabajo.php\" method=\"post\" enctype=\"multipart/form-data\"><input type='hidden' name='t' value='$resultado[AUTO_INCREMENT]'>";
+
+					echo "<div class='form-row'><div class='form-group col-12'><label for=\"codigo\">Código</label><input type=\"text\" name=\"codigo\" value=\"$resultado[AUTO_INCREMENT]\" disabled></div></div>";
+					mysqli_close($conector);
+					?>
+					<div class='form-row'>
+						<div class='form-group col-6'>
+							<label for="titulo">Título</label><input type="text" name="titulo">
+						</div>
+						<div class='form-group col-6'>
+							<label for="descripcion">Descripción</label><textarea name="descripcion"></textarea>
+						</div>
+					</div>
+					<div class='form-row'>
+						<div class='form-group col-6'>
+							<label for="precio">Precio</label><input type="text" name="precio"></textarea>
+						</div>
+						<div class='form-group col-6'>
+							<label for="id_cliente">Cliente</label><select name="id_cliente">
+							<?php 
+							while(!is_null($resultado2)){
+								echo "<option value=\"$resultado2[id]\">$resultado2[nombre]</option>";
+								$resultado2 = mysqli_fetch_array($datos2,MYSQLI_ASSOC);
+							}
+							?>
+							</select>
+						</div>
+					</div>
+					<div class='form-row'>
+						<div class='form-group col-12'>
+							<label for="imagen">Archivo</label><input type="file" name="imagen">
+						</div>
+					</div>
+					<div class='form-row'>
+						<div class='form-group col-12'>
+							<input type="submit" value="Crear" class="btn btn-light btn-block">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
 	</div>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

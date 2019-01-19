@@ -1,3 +1,8 @@
+<?php 
+session_start();			
+include '../conectarServidor.php';
+$userId = getId();
+ ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -10,8 +15,8 @@
 <body>
 	
 		<?php 
-			include '../conectarServidor.php';
-			menu("trabajos");
+
+			menu("trabajos",$userId);
 		?>
 	
 	<div class="content">
@@ -29,9 +34,9 @@
 
 			$resultado = mysqli_fetch_array($datos,MYSQLI_ASSOC);
 			$resultado["fecha"] = convertirFecha($resultado["fecha"],true);
-			echo "<div class=\"noticia\">";
+			echo "<div class='container'><div class='row'><div class=\"noticia col-6 offset-3 bg-dark\">";
 			echo "<h2>$resultado[titular]</h2><br><img src=\"../../img/noticias/$resultado[imagen]\" alt=\"$resultado[titular]\" width=\"400px\" align=\"left\" hspace=\"20\">";
-			echo "<p>$resultado[contenido]<br></p><span id=\"noticia-foot\">Publicado el $resultado[fecha]</span></div>";
+			echo "<p>$resultado[contenido]<br></p><span id=\"noticia-foot\">Publicado el $resultado[fecha]</span></div></div></div>";
 			mysqli_close($conector);
 		?>
 	</div>

@@ -1,3 +1,8 @@
+<?php 
+session_start(); 
+include '../conectarServidor.php';
+$userId = getId();
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,40 +15,69 @@
 </head>
 <body>
 	
-		<?php 
-			include '../conectarServidor.php';
-			menu("trabajos");
+		<?php
+			menu("trabajos",$userId);
 		?>
-	
-	<div class="form">
-		<form action="crearCliente.php" method="post">
-			<?php 
+	<div class="container">
+		<div class="row">
+			<div class="col-6 offset-3 bg-dark text-light">
+				<form action="crearCliente.php" method="post">
+					<?php 
 
-				$conector = conectarServer();
+						$conector = conectarServer();
 
-				/**
-				 * Se obtiene el siguiente código 
-				 * que se le va a asignar automáticamente 
-				 * al nuevo usuario que crearás.
-				 */
-				$consulta = "SELECT AUTO_INCREMENT from information_schema.TABLES WHERE TABLE_SCHEMA = \"estudio\" and TABLE_NAME = \"clientes\";";
+						/**
+						 * Se obtiene el siguiente código 
+						 * que se le va a asignar automáticamente 
+						 * al nuevo usuario que crearás.
+						 */
+						$consulta = "SELECT AUTO_INCREMENT from information_schema.TABLES WHERE TABLE_SCHEMA = \"estudio\" and TABLE_NAME = \"clientes\";";
 
-				$datos = mysqli_query($conector,$consulta);
+						$datos = mysqli_query($conector,$consulta);
 
-				$resultado = mysqli_fetch_array($datos,MYSQLI_ASSOC);
+						$resultado = mysqli_fetch_array($datos,MYSQLI_ASSOC);
 
-				echo "<span class=\"campo\"><label for=\"codigo\">Código</label><input type=\"text\" name=\"codigo\" value=\"$resultado[AUTO_INCREMENT]\" disabled></span><br>";
-				mysqli_close($conector);
-			?>
-			<span class="campo"><label for="nombre">Nombre *</label><input type="text" name="nombre" maxlength="20" required="required"></span><br>
-			<span class="campo"><label for="apellidos">Apellidos *</label><input type="text" name="apellidos" maxlength="50" required="required"></span><br>
-			<span class="campo"><label for="direccion">Dirección *</label><textarea name="direccion" maxlength="100" required="required"></textarea></span><br>
-			<span class="campo"><label for="telefono1">Teléfono 1 *</label><input type="text" name="telefono1" maxlength="9" minlength="9" required="required"></span><br>
-			<span class="campo"><label for="telefono2">Teléfono 2 (Opcional)</label><input type="text" name="telefono2" maxlength="9" minlength="9"></span><br>
-			<span class="campo"><label for="nick">Nick *</label><input type="text" name="nick" maxlength="20" required="required"></span><br>
-			<span class="campo"><label for="contraseña">Contraseña *</label><input type="text" name="contraseña" maxlength="20" required="required"></span><br>
-			<span class="campo"><input type="submit" value="Crear"></span>
-		</form>
+						echo "<div class='form-row'><div class='form-group col-12'><label for=\"codigo\">Código</label><input type=\"text\" name=\"codigo\" value=\"$resultado[AUTO_INCREMENT]\" disabled></div></div>";
+						mysqli_close($conector);
+					?>
+					<div class='form-row'>
+						<div class='form-group col-6'>
+							<label for="nombre">Nombre</label><input type="text" name="nombre" maxlength="20" required="required">
+						</div>
+						<div class='form-group col-6'>
+							<label for="apellidos">Apellidos</label><input type="text" name="apellidos" maxlength="50" required="required">
+						</div>
+					</div>
+					<div class='form-row'>
+						<div class='form-group col-12'>
+							<label for="direccion">Dirección</label><textarea name="direccion" maxlength="100" required="required"></textarea>
+						</div>
+					</div>
+					<div class='form-row'>
+						<div class='form-group col-6'>
+							<label for="telefono1">Teléfono 1</label><input type="text" name="telefono1" maxlength="9" minlength="9" required="required">
+						</div>
+						<div class='form-group col-6'>
+							<label for="telefono2">Teléfono 2 *</label><input type="text" name="telefono2" maxlength="9" minlength="9">
+						</div>
+					</div>
+					<div class='form-row'>
+						<div class='form-group col-6'>
+							<label for="nick">Nick</label><input type="text" name="nick" maxlength="20" required="required">
+						</div>
+						<div class='form-group col-6'>
+							<label for="contraseña">Contraseña</label><input type="text" name="contraseña" maxlength="20" required="required">
+						</div>
+					</div>
+					<div class='form-row'>
+						<div class='form-group col-12'>
+							<input type="submit" value="Crear" class='btn btn-light btn-block'>
+						</div>
+					</div>
+					<span class="text-light">* Este campo no es obligatorio</span>
+				</form>
+			</div>
+		</div>
 	</div>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
