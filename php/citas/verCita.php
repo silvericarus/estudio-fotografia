@@ -1,8 +1,22 @@
 <?php 
 session_start();
-include '../conectarServidor.php';
+include '../conectarServidor.php'; 
 $userId = getId();
- ?>
+
+if (!isset($_GET["cl"])) {
+	if (checkID($userId,"admin")==-1) {
+		header("Location:../../login.php");
+	}elseif (checkID($userId,"admin")==0) {
+		header("Location:../../index.php");
+	}
+}else{
+	if (checkID($userId,"cliente")==-1) {
+		header("Location:../../login.php");
+	}elseif (checkID($userId,"cliente")==0) {
+		header("Location:../../index.php");
+	}
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
