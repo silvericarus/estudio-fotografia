@@ -5,6 +5,12 @@ include '../conectarServidor.php';
 
 $userId = getId();
 
+if (checkID($userId,"cliente")==-1) {
+	header("Location:../../login.php");
+}elseif (checkID($userId,"cliente")==0) {
+	header("Location:../../index.php");
+}
+
 $conector = conectarServer();
 
 $consulta1 = "SELECT nombre,apellidos, apellidos, direccion, telefono1, telefono2, nick, contraseña FROM clientes WHERE id = '$userId'";

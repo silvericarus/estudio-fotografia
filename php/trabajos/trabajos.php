@@ -1,10 +1,7 @@
 <?php 
-session_start(); 
-
-include '../conectarServidor.php';
-
+session_start();
+include '../conectarServidor.php'; 
 $userId = getId();
-
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -30,7 +27,7 @@ $userId = getId();
 			menu("trabajos",$userId);
 		?>
 		<?php 
-		if (!isset($_GET["c"])&&!isset($_GET["show"])) {
+		if (!isset($_GET["c"])&&!isset($_GET["show"])&&!isset($_GET["nouser"])) {
 			echo "
 			<div style=\"display: flex; justify-content: space-between;\">
 						<div></div>";
@@ -39,7 +36,7 @@ $userId = getId();
 		 ?>
 		
 	<?php 
-	if (!isset($_GET["c"])&&!isset($_GET["show"])) {
+	if (!isset($_GET["c"])&&!isset($_GET["show"])&&!isset($_GET["nouser"])) {
 		echo "<div id=\"searchbar\">
 			<form name=\"buscartrabajos\" action=\"buscarTrabajos.php\">
 				<input type=\"text\" name=\"textobusqueda\" title=\"Título, nombre de cliente o precio\" required=\"required\">
@@ -75,7 +72,7 @@ $userId = getId();
 			$datos = mysqli_query($conector,$consulta);
 
 			$resultado = mysqli_fetch_array($datos,MYSQLI_ASSOC);
-			if(!isset($_GET["c"])&&!isset($_GET["show"])){
+			if(!isset($_GET["c"])&&!isset($_GET["show"])&&!isset($_GET["nouser"])){
 				echo "<div class='container'><div class='row'><table class='table table-bordered table-dark col-6 offset-3'><tr><td>Miniatura</td><td>Título</td><td>Cliente</td><td>Editar trabajo</td><td>Ver trabajo</td><td>Borrar trabajo</td></tr>";
 
 				while(!is_null($resultado)){
@@ -133,12 +130,12 @@ $userId = getId();
 
 	</div>
 	<?php 
-		if (!isset($_GET["c"])&&!isset($_GET["show"])) {
+		if (!isset($_GET["c"])&&!isset($_GET["show"])&&!isset($_GET["nouser"])) {
 			echo "</div>";
 		}
 	?>
 	<?php 
-	if (!isset($_GET["c"])&&!isset($_GET["show"])) {
+	if (!isset($_GET["c"])&&!isset($_GET["show"])&&!isset($_GET["nouser"])) {
 		echo "<form action=\"crearNuevoTrabajo.php\" method=\"post\" class=\"botonCrear\">
 				<button type='submit' name='crearTrabajo' value='+' class=\"btn btn-dark rounded-circle\" ><i class=\"fas fa-plus\"></i></button>
 			</form>";

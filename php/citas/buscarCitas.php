@@ -1,3 +1,15 @@
+<?php 
+session_start();
+include '../conectarServidor.php'; 
+$userId = getId();
+
+if (checkID($userId,"cliente")==-1) {
+	header("Location:../../login.php");
+}elseif (checkID($userId,"cliente")==0) {
+	header("Location:../../index.php");
+}
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -11,9 +23,8 @@
 </head>
 <body>
 	
-		<?php 
-			include '../conectarServidor.php';
-			menu("trabajos");
+		<?php
+			menu("trabajos",$userId);
 		?>
 	
 	<div id="searchbar">
