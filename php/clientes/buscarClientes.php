@@ -1,3 +1,15 @@
+<?php 
+session_start();
+include '../conectarServidor.php'; 
+$userId = getId();
+
+if (checkID($userId,"admin")==-1) {
+	header("Location:../../login.php");
+}elseif (checkID($userId,"admin")==0) {
+	header("Location:../../index.php");
+}
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -10,13 +22,12 @@
 </head>
 <body>
 	
-		<?php 
-			include '../conectarServidor.php';
-			menu("trabajos");
+		<?php
+			menu("trabajos",$userId);
 		?>
 	
 	<div id="searchbar">
-		<<form name="buscarclientes" action="buscarClientes.php" method="get">
+		<form name="buscarclientes" action="buscarClientes.php" method="get">
 			<input type="text" name="textobusqueda" title="Nombre, Apellidos o Teléfono primario" required="required">
 			<input type="submit"><br>
 			<label for="nombre">Ordenar por nombre</label><input type="radio" name="orden" value="nombre" required="required"><br>
