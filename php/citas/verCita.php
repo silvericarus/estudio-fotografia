@@ -81,7 +81,7 @@ if (!isset($_GET["cl"])) {
 				if (!isset($_GET["cl"])) {
 					echo "<p>En <b>$resultado[lugar]</b> el <b>$resultado[fecha]</b> a las <b>$resultado[hora]</b> horas, el cliente con el que te citas es <b>$resultado[nombre]</b>, su telefono de contacto es <b>$resultado[telefono1]</b></p>";
 				}else{
-					echo "<p>En <b>$resultado[lugar]</b> el <b>$resultado[fecha]</b> a las <b>$resultado[hora]</b> horas, si deseas hacer alguna consulta o cancelar esta cita, puedes contactarnos en <a href='mailto:ayuda@estudiofotografia.es' class='text-warning'>nuestro correo</a>.</p>";
+					echo "<p>En <b>$resultado[lugar]</b> el <b>$resultado[fecha]</b> a las <b>$resultado[hora]</b> horas, si deseas hacer alguna consulta o cancelar esta cita, puedes contactarnos en <a href='mailto:ayuda@estudiofotografia.es' class='important'>nuestro correo</a>.</p>";
 				}
 				
 				if(!isset($_GET["cl"])){
@@ -101,7 +101,7 @@ if (!isset($_GET["cl"])) {
 						echo "<p>En <b>$resultado[lugar]</b> el <b>$resultado[fecha]</b> a las <b>$resultado[hora]</b> horas, el cliente con el que te citas es <b>$resultado[nombre]</b>, su telefono de contacto es <b>$resultado[telefono1]<br></b><i>Cita pasada</i></p>";
 					}else{
 						echo "<h2>$resultado[motivo]</h2>";
-						echo "<p>En <b>$resultado[lugar]</b> el <b>$resultado[fecha]</b> a las <b>$resultado[hora]</b> horas, si deseas hacer alguna consulta o cancelar esta cita, puedes contactarnos en <a href='mailto:ayuda@estudiofotografia.es' class='text-warning'>nuestro correo</a>.<br><i>Cita pasada</i></p>";
+						echo "<p>En <b>$resultado[lugar]</b> el <b>$resultado[fecha]</b> a las <b>$resultado[hora]</b> horas, si deseas hacer alguna consulta o cancelar esta cita, puedes contactarnos en <a href='mailto:ayuda@estudiofotografia.es' class='important'>nuestro correo</a>.<br><i>Cita pasada</i></p>";
 					}
 					
 						if (!isset($_GET["cl"])) {

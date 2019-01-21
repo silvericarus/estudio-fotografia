@@ -308,15 +308,15 @@
 			<h5>Estudio de Fotografía</h5>
 			<div style='display:flex;justify-content:space-between;'>
 			<ul>
-				<li><a href=\"index.php\" class=' text-warning'>Inicio</a></li>
-				<li><a href=\"php/noticias/noticias.php\" class=' text-warning'>Noticias</a></li>
-				<li><a href=\"php/clientes/clientes.php\" class=' text-warning'>Clientes</a></li>
-				<li><a href=\"php/trabajos/trabajos.php\" class=' text-warning'>Trabajos</a></li>
-				<li><a href=\"php/citas/citas.php\" class=' text-warning'>Citas</a></li>
+				<li><a href=\"index.php\" class=' important'>Inicio</a></li>
+				<li><a href=\"php/noticias/noticias.php\" class=' important'>Noticias</a></li>
+				<li><a href=\"php/clientes/clientes.php\" class=' important'>Clientes</a></li>
+				<li><a href=\"php/trabajos/trabajos.php\" class=' important'>Trabajos</a></li>
+				<li><a href=\"php/citas/citas.php\" class=' important'>Citas</a></li>
 			</ul>
 			<p class='footer-details'>
 				FOTOS Y OBJETIVOS, S.L. con domicilio en la Calle Gran Vía de Colón, 23, 18001, Granada, Granada; CIF, B56363626 y nº de inscripción en el Registro Mercantil de Granada, Tomo 5743, Folio 298, SECCION  3,  Hoja número F-49643, inscripción 3º,es titular de esta web.
-				Para ver más información sobre el sitio pulsar <a href='info_page.php' class=' text-warning'>aquí</a>.
+				Para ver más información sobre el sitio pulsar <a href='info_page.php' class=' important'>aquí</a>.
 			</p>
 			</div>
 			</div>
@@ -328,12 +328,12 @@
 			<h5>Estudio de Fotografía</h5>
 			<div style='display:flex;justify-content:space-between;'>
 			<ul>
-				<li><a href=\"index.php\" class=' text-warning'>Inicio</a></li>
-				<li><a href=\"php/trabajos/trabajos.php?nouser=true\" class=' text-warning'>Trabajos</a></li>
+				<li><a href=\"index.php\" class=' important'>Inicio</a></li>
+				<li><a href=\"php/trabajos/trabajos.php?nouser=true\" class=' important'>Trabajos</a></li>
 			</ul>
 			<p class='footer-details'>
 				FOTOS Y OBJETIVOS, S.L. con domicilio en la Calle Gran Vía de Colón, 23, 18001, Granada, Granada; CIF, B56363626 y nº de inscripción en el Registro Mercantil de Granada, Tomo 5743, Folio 298, SECCION  3,  Hoja número F-49643, inscripción 3º,es titular de esta web.
-				Para ver más información sobre el sitio pulsar <a href='info_page.php' class=' text-warning'>aquí</a>.
+				Para ver más información sobre el sitio pulsar <a href='info_page.php' class=' important'>aquí</a>.
 			</p>
 			</div>
 			</div>
@@ -345,15 +345,15 @@
 			<h5>Estudio de Fotografía</h5>
 			<div style='display:flex;justify-content:space-between;'>
 			<ul>
-				<li><a href=\"index.php\" class='text-warning'>Inicio</a></li>
-				<li><a href=\"php/utils/datos.php\" class='text-warning'>Mis Datos</a></li>
-				<li><a href=\"php/trabajos/trabajos.php?c=true\" class='text-warning'>Mis Trabajos</a></li>
-				<li><a href=\"php/citas/citas.php?c=true\" class='text-warning'>Mis Citas</a></li>
-				<li><a href=\"php/trabajos/trabajos.php\" class='text-warning'>Trabajos Disponibles</a></li>
+				<li><a href=\"index.php\" class='important'>Inicio</a></li>
+				<li><a href=\"php/utils/datos.php\" class='important'>Mis Datos</a></li>
+				<li><a href=\"php/trabajos/trabajos.php?c=true\" class='important'>Mis Trabajos</a></li>
+				<li><a href=\"php/citas/citas.php?c=true\" class='important'>Mis Citas</a></li>
+				<li><a href=\"php/trabajos/trabajos.php\" class='important'>Trabajos Disponibles</a></li>
 			</ul>
 			<p class='footer-details'>
 				FOTOS Y OBJETIVOS, S.L. con domicilio en la Calle Gran Vía de Colón, 23, 18001, Granada, Granada; CIF, B56363626 y nº de inscripción en el Registro Mercantil de Granada, Tomo 5743, Folio 298, SECCION  3,  Hoja número F-49643, inscripción 3º,es titular de esta web.
-				Para ver más información sobre el sitio pulsar <a href='info_page.php' class='text-warning'>aquí</a>.
+				Para ver más información sobre el sitio pulsar <a href='info_page.php' class='important'>aquí</a>.
 			</p>
 			</div>
 			</div>
@@ -366,15 +366,15 @@
 			<h5>Estudio de Fotografía</h5>
 			<div style='display:flex;justify-content:space-between;'>
 			<ul>
-				<li><a href=\"../../index.php\" class='text-warning'>Inicio</a></li>
-				<li><a href=\"../noticias/noticias.php\" class='text-warning'>Noticias</a></li>
-				<li><a href=\"../clientes/clientes.php\" class='text-warning'>Clientes</a></li>
-				<li><a href=\"../trabajos/trabajos.php\" class='text-warning'>Trabajos</a></li>
-				<li><a href=\"../citas/citas.php\" class='text-warning'>Citas</a></li>
+				<li><a href=\"../../index.php\" class='important'>Inicio</a></li>
+				<li><a href=\"../noticias/noticias.php\" class='important'>Noticias</a></li>
+				<li><a href=\"../clientes/clientes.php\" class='important'>Clientes</a></li>
+				<li><a href=\"../trabajos/trabajos.php\" class='important'>Trabajos</a></li>
+				<li><a href=\"../citas/citas.php\" class='important'>Citas</a></li>
 			</ul>
 			<p class='footer-details'>
 				FOTOS Y OBJETIVOS, S.L. con domicilio en la Calle Gran Vía de Colón, 23, 18001, Granada, Granada; CIF, B56363626 y nº de inscripción en el Registro Mercantil de Granada, Tomo 5743, Folio 298, SECCION  3,  Hoja número F-49643, inscripción 3º,es titular de esta web.
-				Para ver más información sobre el sitio pulsar <a href='../../info_page.php' class='text-warning'>aquí</a>.
+				Para ver más información sobre el sitio pulsar <a href='../../info_page.php' class='important'>aquí</a>.
 			</p>
 			</div>
 			</div>";
@@ -384,13 +384,13 @@
 			<h5>Estudio de Fotografía</h5>
 			<div style='display:flex;justify-content:space-between;'>
 			<ul>
-				<li><a href=\"../../index.php\" class='text-warning'>Inicio</a></li>
-				<li><a href=\"../trabajos/trabajos.php?nouser=true\" class='text-warning'></a></li>
+				<li><a href=\"../../index.php\" class='important'>Inicio</a></li>
+				<li><a href=\"../trabajos/trabajos.php?nouser=true\" class='important'></a></li>
 				
 			</ul>
 			<p class='footer-details'>
 				FOTOS Y OBJETIVOS, S.L. con domicilio en la Calle Gran Vía de Colón, 23, 18001, Granada, Granada; CIF, B56363626 y nº de inscripción en el Registro Mercantil de Granada, Tomo 5743, Folio 298, SECCION  3,  Hoja número F-49643, inscripción 3º,es titular de esta web.
-				Para ver más información sobre el sitio pulsar <a href='../../info_page.php' class='text-warning'>aquí</a>.
+				Para ver más información sobre el sitio pulsar <a href='../../info_page.php' class='important'>aquí</a>.
 			</p>
 			</div>
 			</div>";
@@ -400,16 +400,16 @@
 			<h5>Estudio de Fotografía</h5>
 			<div style='display:flex;justify-content:space-between;'>
 			<ul>
-				<li><a href=\"../../index.php\" class='text-warning'>Inicio</a></li>
-				<li><a href=\"../utils/datos.php\" class='text-warning'>Mis Datos</a></li>
-				<li><a href=\"../trabajos/trabajos.php?c=true\" class='text-warning'>Mis Trabajos</a></li>
-				<li><a href=\"../citas/citas.php?c=true\" class='text-warning'>Mis Citas</a></li>
-				<li><a href=\"../trabajos/trabajos.php\" class='text-warning'>Trabajos Disponibles</a></li>
+				<li><a href=\"../../index.php\" class='important'>Inicio</a></li>
+				<li><a href=\"../utils/datos.php\" class='important'>Mis Datos</a></li>
+				<li><a href=\"../trabajos/trabajos.php?c=true\" class='important'>Mis Trabajos</a></li>
+				<li><a href=\"../citas/citas.php?c=true\" class='important'>Mis Citas</a></li>
+				<li><a href=\"../trabajos/trabajos.php\" class='important'>Trabajos Disponibles</a></li>
 				
 			</ul>
 			<p class='footer-details'>
 				FOTOS Y OBJETIVOS, S.L. con domicilio en la Calle Gran Vía de Colón, 23, 18001, Granada, Granada; CIF, B56363626 y nº de inscripción en el Registro Mercantil de Granada, Tomo 5743, Folio 298, SECCION  3,  Hoja número F-49643, inscripción 3º,es titular de esta web.
-				Para ver más información sobre el sitio pulsar <a href='../../info_page.php' class='text-warning'>aquí</a>.
+				Para ver más información sobre el sitio pulsar <a href='../../info_page.php' class='important'>aquí</a>.
 			</p>
 			</div>
 			</div>";

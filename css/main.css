@@ -44,8 +44,7 @@
 }
 
 body{
-	background-image:url('../img/pattern.svg');
-  background-attachment: fixed;
+	background-color: #eae7dd;
 }
 #navbar{
 	background-color: #ece8d9;
@@ -325,4 +324,11 @@ section p,section li{
 .itemcarousel img{
   object-fit: cover;
   height: inherit;
+}
+
+.important {
+	color: #dcbd1b;
+}
+.important:hover{
+	color:#d4c058;
 }
