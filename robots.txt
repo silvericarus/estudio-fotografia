@@ -1,0 +1,10 @@
+User-agent: *
+Disallow: /
+Allow: /login.php
+Allow: /info_page.php
+Allow: /index.php
+Allow: /cookies_page.php
+Allow: /php/trabajos/trabajos.php
+Allow: /php/trabajos/verTrabajo.php
+Sitemap: http://silvericarus.000webhostapp.com/sitemap.xml
+Allow: /sitemap.xml

@@ -6,20 +6,21 @@ session_start();
 <html lang="es">
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Iniciar Sesión | Estudio de Fotografía</title>
 	<link rel="icon" href="img/logo.png" type="image/png" sizes="513x414">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 	<script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
+  crossorigin="anonymous" async></script>
   <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
 <?php
 	if (isset($_POST["Enviar"])) {
 		
-		include 'php/conectarServidor.php';
+		include './php/conectarServidor.php';
 
 		$conector = conectarServer();
 
@@ -58,11 +59,11 @@ session_start();
 				<form action="#" method="post" name="login">
 					<div class="form-group">
     					<label for="usuario">Nombre de usuario</label>
-    					<input type="text" class="form-control" id="usuario" placeholder="Introduce tu nombre de usuario" name="usuario">
+    					<input type="text" class="form-control" id="usuario" placeholder="Introduce tu nombre de usuario" name="usuario" aria-invalid="false">
   					</div>
   					<div class="form-group">
     					<label for="pass">Contraseña</label>
-    					<input type="password" class="form-control" id="pass" placeholder="Introduce tu contraseña" name="pass">
+    					<input type="password" class="form-control" id="pass" placeholder="Introduce tu contraseña" name="pass" aria-invalid="false">
 						<div class="form-group form-check">
     						<input type="checkbox" class="form-check-input" id="recordar" name="recordar">
     						<label class="form-check-label" for="recordar">Recordarme</label>
@@ -76,4 +77,12 @@ session_start();
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+<script type="text/javascript" defer>
+	let GET = window.location.search;
+
+	if (GET == "?nologin=1") {
+		$("#usuario").attr("aria-invalid",true);
+		$("#pass").attr("aria-invalid",true);
+	}
+</script>
 </html>

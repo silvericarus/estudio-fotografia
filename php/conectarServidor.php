@@ -9,11 +9,15 @@
 	function menu($ruta,$id){
 		if($ruta == "/"){
 			if ($id == -1) {
-				echo "<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\" style=\"width:100%;\">
-					<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbar\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
+				echo "<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\" style=\"width:100%;\" role='menu'>
+					<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbar\" aria-expanded=\"false\" aria-label=\"Minimizar menú\">
     					<span class=\"navbar-toggler-icon\"></span>
   					</button>
-  					<a class=\"navbar-brand\" href=\"index.php\"><img src=\"img/logo.png\" alt=\"Logo de la empresa\" width=\"50px\" id=\"logoEmpresa\"></a>
+  					<a class=\"navbar-brand\" href=\"index.php\"><picture id=\"logoEmpresa\">
+  							<source srcset=\"img/logo.webp\" type=\"image/webp\">
+  							<source srcset=\"img/logo.png\" type=\"image/png\"> 
+  							<img src=\"img/logo.png\" alt=\"Logo de la empresa\" width=\"50px\">
+						</picture></a>
   					<div class=\"collapse navbar-collapse\" id=\"navbarCollapse\">
     					<ul class=\"navbar-nav\">
       						<li class=\"nav-item\">
@@ -26,16 +30,20 @@
 
   					</div>
   					<form id='login' action='login.php' method='post'>
-  						<button type='submit' class='btn btn-light' form='login'><i class=\"fas fa-sign-in-alt\"></i></button>
+  						<button type='submit' class='btn btn-light' form='login'><i class=\"fas fa-sign-in-alt\"></i>Iniciar Sesión</button>
   					</form>
 				</nav>";
 			}else if ($id==0) {
 				# menú de admin
-				echo "<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\" style=\"width:100%;\">
-					<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbar\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
+				echo "<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\" style=\"width:100%;\" role='menu'>
+					<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbar\" aria-expanded=\"false\" aria-label=\"Minimizar menú\">
     					<span class=\"navbar-toggler-icon\"></span>
   					</button>
-  					<a class=\"navbar-brand\" href=\"index.php\"><img src=\"img/logo.png\" alt=\"Logo de la empresa\" width=\"50px\" id=\"logoEmpresa\"></a>
+  					<a class=\"navbar-brand\" href=\"index.php\"><picture id=\"logoEmpresa\">
+  							<source srcset=\"img/logo.webp\" type=\"image/webp\">
+  							<source srcset=\"img/logo.png\" type=\"image/png\"> 
+  							<img src=\"img/logo.png\" alt=\"Logo de la empresa\" width=\"50px\">
+						</picture></a>
   					<div class=\"collapse navbar-collapse\" id=\"navbarCollapse\">
     					<ul class=\"navbar-nav\">
     						<li class=\"nav-item\">
@@ -67,11 +75,15 @@
 				$consulta = "SELECT nombre from clientes where id = '$id'";
 				$datos = mysqli_query($conector,$consulta);
 				$resul = mysqli_fetch_array($datos,MYSQLI_ASSOC);
-				echo "<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\" style=\"width:100%;\">
-					<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbar\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
+				echo "<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\" style=\"width:100%;\" role='menu'>
+					<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbar\" aria-expanded=\"false\" aria-label=\"Minimizar menú\">
     					<span class=\"navbar-toggler-icon\"></span>
   					</button>
-  					<a class=\"navbar-brand\" href=\"index.php\"><img src=\"img/logo.png\" alt=\"Logo de la empresa\" width=\"50px\" id=\"logoEmpresa\"></a>
+  					<a class=\"navbar-brand\" href=\"index.php\"><picture id=\"logoEmpresa\">
+  							<source srcset=\"img/logo.webp\" type=\"image/webp\">
+  							<source srcset=\"img/logo.png\" type=\"image/png\"> 
+  							<img src=\"img/logo.png\" alt=\"Logo de la empresa\" width=\"50px\">
+						</picture></a>
   					<div class=\"collapse navbar-collapse\" id=\"navbarCollapse\">
     					<ul class=\"navbar-nav\">
     						<li class=\"nav-item\">
@@ -99,11 +111,15 @@
 			}
 		}else{
 			if ($id == -1) {
-				echo "<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\" style=\"width:100%;\">
-					<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbar\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
+				echo "<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\" style=\"width:100%;\" role='menu'>
+					<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbar\" aria-expanded=\"false\" aria-label=\"Minimizar menú\">
     					<span class=\"navbar-toggler-icon\"></span>
   					</button>
-  					<a class=\"navbar-brand\" href=\"../../index.php\"><img src=\"../../img/logo.png\" alt=\"Logo de la empresa\" width=\"50px\" id=\"logoEmpresa\"></a>
+  					<a class=\"navbar-brand\" href=\"../../index.php\"><picture id=\"logoEmpresa\">
+  							<source srcset=\"../../img/logo.webp\" type=\"image/webp\">
+  							<source srcset=\"../../img/logo.png\" type=\"image/png\"> 
+  							<img src=\"../../img/logo.png\" alt=\"Logo de la empresa\" width=\"50px\">
+						</picture></a>
   					<div class=\"collapse navbar-collapse\" id=\"navbarCollapse\">
     					<ul class=\"navbar-nav\">
       						<li class=\"nav-item\">
@@ -116,16 +132,20 @@
 
   					</div>
   					<form id='login' action='../utils/login.php' method='post'>
-  						<button type='submit' class='btn btn-light' form='login'><i class=\"fas fa-sign-in-alt\"></i></button>
+  						<button type='submit' class='btn btn-light' form='login'><i class=\"fas fa-sign-in-alt\"></i>Iniciar Sesión</button>
   					</form>
 				</nav>";
 			}else if ($id==0) {
 				# menú de admin
-				echo "<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\" style=\"width:100%;\">
-					<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbar\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
+				echo "<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\" style=\"width:100%;\" role='menu'>
+					<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbar\" aria-expanded=\"false\" aria-label=\"Minimizar menú\">
     					<span class=\"navbar-toggler-icon\"></span>
   					</button>
-  					<a class=\"navbar-brand\" href=\"../../index.php\"><img src=\"../../img/logo.png\" alt=\"Logo de la empresa\" width=\"50px\" id=\"logoEmpresa\"></a>
+  					<a class=\"navbar-brand\" href=\"../../index.php\"><picture id=\"logoEmpresa\">
+  							<source srcset=\"../../img/logo.webp\" type=\"image/webp\">
+  							<source srcset=\"../../img/logo.png\" type=\"image/png\"> 
+  							<img src=\"../../img/logo.png\" alt=\"Logo de la empresa\" width=\"50px\">
+						</picture></a>
   					<div class=\"collapse navbar-collapse\" id=\"navbarCollapse\">
     					<ul class=\"navbar-nav\">
     						<li class=\"nav-item\">
@@ -157,11 +177,15 @@
 				$consulta = "SELECT nombre from clientes where id = '$id'";
 				$datos = mysqli_query($conector,$consulta);
 				$resul = mysqli_fetch_array($datos,MYSQLI_ASSOC);
-				echo "<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\" style=\"width:100%;\">
-					<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbar\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
+				echo "<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\" style=\"width:100%;\" role='menu'>
+					<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbar\" aria-expanded=\"false\" aria-label=\"Minimizar menú\">
     					<span class=\"navbar-toggler-icon\"></span>
   					</button>
-  					<a class=\"navbar-brand\" href=\"../../index.php\"><img src=\"../../img/logo.png\" alt=\"Logo de la empresa\" width=\"50px\" id=\"logoEmpresa\"></a>
+  					<a class=\"navbar-brand\" href=\"../../index.php\"><picture id=\"logoEmpresa\">
+  							<source srcset=\"../../img/logo.webp\" type=\"image/webp\">
+  							<source srcset=\"../../img/logo.png\" type=\"image/png\"> 
+  							<img src=\"../../img/logo.png\" alt=\"Logo de la empresa\" width=\"50px\">
+						</picture></a>
   					<div class=\"collapse navbar-collapse\" id=\"navbarCollapse\">
     					<ul class=\"navbar-nav\">
     						<li class=\"nav-item\">
@@ -305,15 +329,26 @@
 			if ($id==0) {
 				echo "<footer>
 			<div class='footer text-light'>
-			<h5>Estudio de Fotografía</h5>
-			<div style='display:flex;justify-content:space-between;'>
-			<ul>
-				<li><a href=\"index.php\" class=' important'>Inicio</a></li>
-				<li><a href=\"php/noticias/noticias.php\" class=' important'>Noticias</a></li>
-				<li><a href=\"php/clientes/clientes.php\" class=' important'>Clientes</a></li>
-				<li><a href=\"php/trabajos/trabajos.php\" class=' important'>Trabajos</a></li>
-				<li><a href=\"php/citas/citas.php\" class=' important'>Citas</a></li>
-			</ul>
+			<div style='display:flex;justify-content:space-evenly;align-items:center;height:inherit;'>
+			<div style='display: flex;justify-content: center;align-items: center;height: inherit;flex-direction: column;' role='banner'>
+				<h5>Estudio de Fotografía</h5>
+				<picture class='mx-auto'>
+  					<source srcset='img/logo.webp' type='image/webp'>
+  					<source srcset='img/logo.png' type='image/png'> 
+  					<img src='img/logo.png' alt='Logo de la empresa' height='100px'>
+				</picture>
+				<i>Alberto González Rosa 2019 &copy;</i>
+			</div>
+			<div>
+				<h5>Secciones</h5>
+				<ul style=\"font-size:20px;list-style-image: url(img/camera-solid.svg);\">
+					<li><a href=\"index.php\" class=' important'>Inicio</a></li>
+					<li><a href=\"php/noticias/noticias.php\" class=' important'>Noticias</a></li>
+					<li><a href=\"php/clientes/clientes.php\" class=' important'>Clientes</a></li>
+					<li><a href=\"php/trabajos/trabajos.php\" class=' important'>Trabajos</a></li>
+					<li><a href=\"php/citas/citas.php\" class=' important'>Citas</a></li>
+				</ul>
+			</div>
 			<p class='footer-details'>
 				FOTOS Y OBJETIVOS, S.L. con domicilio en la Calle Gran Vía de Colón, 23, 18001, Granada, Granada; CIF, B56363626 y nº de inscripción en el Registro Mercantil de Granada, Tomo 5743, Folio 298, SECCION  3,  Hoja número F-49643, inscripción 3º,es titular de esta web.
 				Para ver más información sobre el sitio pulsar <a href='info_page.php' class=' important'>aquí</a>.
@@ -325,12 +360,23 @@
 				#Footer no login
 				echo "<footer>
 			<div class='footer text-light'>
-			<h5>Estudio de Fotografía</h5>
-			<div style='display:flex;justify-content:space-between;'>
-			<ul>
-				<li><a href=\"index.php\" class=' important'>Inicio</a></li>
-				<li><a href=\"php/trabajos/trabajos.php?nouser=true\" class=' important'>Trabajos</a></li>
-			</ul>
+			<div style='display:flex;justify-content:space-evenly;align-items:center;height:inherit;'>
+			<div style='display: flex;justify-content: center;align-items: center;height: inherit;flex-direction: column;' role='banner'>
+				<h5>Estudio de Fotografía</h5>
+				<picture class='mx-auto'>
+  					<source srcset='img/logo.webp' type='image/webp'>
+  					<source srcset='img/logo.png' type='image/png'> 
+  					<img src='img/logo.png' alt='Logo de la empresa' height='100px'>
+				</picture>
+				<i>Alberto González Rosa 2019 &copy;</i>
+			</div>
+			<div>
+				<h5>Secciones</h5>
+				<ul style=\"font-size:20px;list-style-image: url(img/camera-solid.svg);\">
+					<li><a href=\"index.php\" class=' important'>Inicio</a></li>
+					<li><a href=\"php/trabajos/trabajos.php?nouser=true\" class=' important'>Trabajos</a></li>
+				</ul>
+			</div>
 			<p class='footer-details'>
 				FOTOS Y OBJETIVOS, S.L. con domicilio en la Calle Gran Vía de Colón, 23, 18001, Granada, Granada; CIF, B56363626 y nº de inscripción en el Registro Mercantil de Granada, Tomo 5743, Folio 298, SECCION  3,  Hoja número F-49643, inscripción 3º,es titular de esta web.
 				Para ver más información sobre el sitio pulsar <a href='info_page.php' class=' important'>aquí</a>.
@@ -342,15 +388,26 @@
 				#Footer cliente
 				echo "<footer>
 			<div class='footer text-light'>
-			<h5>Estudio de Fotografía</h5>
-			<div style='display:flex;justify-content:space-between;'>
-			<ul>
-				<li><a href=\"index.php\" class='important'>Inicio</a></li>
-				<li><a href=\"php/utils/datos.php\" class='important'>Mis Datos</a></li>
-				<li><a href=\"php/trabajos/trabajos.php?c=true\" class='important'>Mis Trabajos</a></li>
-				<li><a href=\"php/citas/citas.php?c=true\" class='important'>Mis Citas</a></li>
-				<li><a href=\"php/trabajos/trabajos.php\" class='important'>Trabajos Disponibles</a></li>
-			</ul>
+			<div style='display:flex;justify-content:space-evenly;align-items:center;height:inherit;'>
+			<div style='display: flex;justify-content: center;align-items: center;height: inherit;flex-direction: column;' role='banner'>
+				<h5>Estudio de Fotografía</h5>
+				<picture class='mx-auto'>
+  					<source srcset='img/logo.webp' type='image/webp'>
+  					<source srcset='img/logo.png' type='image/png'> 
+  					<img src='img/logo.png' alt='Logo de la empresa' height='100px'>
+				</picture>
+				<i>Alberto González Rosa 2019 &copy;</i>
+			</div>
+			<div>
+				<h5>Secciones</h5>
+				<ul style='font-size:20px;list-style-image: url(img/camera-solid.svg);'>
+					<li><a href=\"index.php\" class='important'>Inicio</a></li>
+					<li><a href=\"php/utils/datos.php\" class='important'>Mis Datos</a></li>
+					<li><a href=\"php/trabajos/trabajos.php?c=true\" class='important'>Mis Trabajos</a></li>
+					<li><a href=\"php/citas/citas.php?c=true\" class='important'>Mis Citas</a></li>
+					<li><a href=\"php/trabajos/trabajos.php\" class='important'>Trabajos Disponibles</a></li>
+				</ul>
+			</div>
 			<p class='footer-details'>
 				FOTOS Y OBJETIVOS, S.L. con domicilio en la Calle Gran Vía de Colón, 23, 18001, Granada, Granada; CIF, B56363626 y nº de inscripción en el Registro Mercantil de Granada, Tomo 5743, Folio 298, SECCION  3,  Hoja número F-49643, inscripción 3º,es titular de esta web.
 				Para ver más información sobre el sitio pulsar <a href='info_page.php' class='important'>aquí</a>.
@@ -363,15 +420,27 @@
 		}else{
 			if ($id == 0) {
 				echo "<div class='footer text-light'>
-			<h5>Estudio de Fotografía</h5>
-			<div style='display:flex;justify-content:space-between;'>
-			<ul>
-				<li><a href=\"../../index.php\" class='important'>Inicio</a></li>
-				<li><a href=\"../noticias/noticias.php\" class='important'>Noticias</a></li>
-				<li><a href=\"../clientes/clientes.php\" class='important'>Clientes</a></li>
-				<li><a href=\"../trabajos/trabajos.php\" class='important'>Trabajos</a></li>
-				<li><a href=\"../citas/citas.php\" class='important'>Citas</a></li>
-			</ul>
+			
+			<div style='display:flex;justify-content:space-evenly;align-items:center;height:inherit;'>
+			<div style='display: flex;justify-content: center;align-items: center;height: inherit;flex-direction: column;' role='banner'>
+				<h5>Estudio de Fotografía</h5>
+				<picture class='mx-auto'>
+  					<source srcset='../../img/logo.webp' type='image/webp'>
+  					<source srcset='../../img/logo.png' type='image/png'> 
+  					<img src='../../img/logo.png' alt='Logo de la empresa' height='100px'>
+				</picture>
+				<i>Alberto González Rosa 2019 &copy;</i>
+			</div>
+			<div>
+				<h5>Secciones</h5>
+				<ul style='font-size:20px;list-style-image: url(../../img/camera-solid.svg);'>
+					<li><a href=\"../../index.php\" class='important'>Inicio</a></li>
+					<li><a href=\"../noticias/noticias.php\" class='important'>Noticias</a></li>
+					<li><a href=\"../clientes/clientes.php\" class='important'>Clientes</a></li>
+					<li><a href=\"../trabajos/trabajos.php\" class='important'>Trabajos</a></li>
+					<li><a href=\"../citas/citas.php\" class='important'>Citas</a></li>
+				</ul>
+			</div>
 			<p class='footer-details'>
 				FOTOS Y OBJETIVOS, S.L. con domicilio en la Calle Gran Vía de Colón, 23, 18001, Granada, Granada; CIF, B56363626 y nº de inscripción en el Registro Mercantil de Granada, Tomo 5743, Folio 298, SECCION  3,  Hoja número F-49643, inscripción 3º,es titular de esta web.
 				Para ver más información sobre el sitio pulsar <a href='../../info_page.php' class='important'>aquí</a>.
@@ -381,13 +450,24 @@
 			}elseif (id==-1) {
 				# footer no login
 				echo "<div class='footer text-light'>
-			<h5>Estudio de Fotografía</h5>
-			<div style='display:flex;justify-content:space-between;'>
-			<ul>
-				<li><a href=\"../../index.php\" class='important'>Inicio</a></li>
-				<li><a href=\"../trabajos/trabajos.php?nouser=true\" class='important'></a></li>
-				
-			</ul>
+			<div style='display:flex;justify-content:space-evenly;align-items:center;height:inherit;'>
+			<div style='display: flex;justify-content: center;align-items: center;height: inherit;flex-direction: column;' role='banner'>
+				<h5>Estudio de Fotografía</h5>
+				<picture class='mx-auto'>
+  					<source srcset='../../img/logo.webp' type='image/webp'>
+  					<source srcset='../../img/logo.png' type='image/png'> 
+  					<img src='../../img/logo.png' alt='Logo de la empresa' height='100px'>
+				</picture>
+				<i>Alberto González Rosa 2019 &copy;</i>
+			</div>
+			<div>
+				<h5>Secciones</h5>
+				<ul style='font-size:20px;list-style-image: url(../../img/camera-solid.svg);'>
+					<li><a href=\"../../index.php\" class='important'>Inicio</a></li>
+					<li><a href=\"../trabajos/trabajos.php?nouser=true\" class='important'></a></li>
+					
+				</ul>
+			</div>
 			<p class='footer-details'>
 				FOTOS Y OBJETIVOS, S.L. con domicilio en la Calle Gran Vía de Colón, 23, 18001, Granada, Granada; CIF, B56363626 y nº de inscripción en el Registro Mercantil de Granada, Tomo 5743, Folio 298, SECCION  3,  Hoja número F-49643, inscripción 3º,es titular de esta web.
 				Para ver más información sobre el sitio pulsar <a href='../../info_page.php' class='important'>aquí</a>.
@@ -397,16 +477,28 @@
 			}else{
 				#footer cliente
 					echo "<div class='footer text-light'>
-			<h5>Estudio de Fotografía</h5>
-			<div style='display:flex;justify-content:space-between;'>
-			<ul>
-				<li><a href=\"../../index.php\" class='important'>Inicio</a></li>
-				<li><a href=\"../utils/datos.php\" class='important'>Mis Datos</a></li>
-				<li><a href=\"../trabajos/trabajos.php?c=true\" class='important'>Mis Trabajos</a></li>
-				<li><a href=\"../citas/citas.php?c=true\" class='important'>Mis Citas</a></li>
-				<li><a href=\"../trabajos/trabajos.php\" class='important'>Trabajos Disponibles</a></li>
-				
-			</ul>
+			
+			<div style='display:flex;justify-content:space-evenly;align-items:center;height:inherit;'>
+			<div style='display: flex;justify-content: center;align-items: center;height: inherit;flex-direction: column;' role='banner'>
+				<h5>Estudio de Fotografía</h5>
+				<picture class='mx-auto'>
+  					<source srcset='../../img/logo.webp' type='image/webp'>
+  					<source srcset='../../img/logo.png' type='image/png'> 
+  					<img src='../../img/logo.png' alt='Logo de la empresa' height='100px'>
+				</picture>
+				<i>Alberto González Rosa 2019 &copy;</i>
+			</div>
+			<div>
+				<h5>Secciones</h5>
+				<ul style='font-size:20px;list-style-image: url(../../img/camera-solid.svg);'>
+					<li><a href=\"../../index.php\" class='important'>Inicio</a></li>
+					<li><a href=\"../utils/datos.php\" class='important'>Mis Datos</a></li>
+					<li><a href=\"../trabajos/trabajos.php?c=true\" class='important'>Mis Trabajos</a></li>
+					<li><a href=\"../citas/citas.php?c=true\" class='important'>Mis Citas</a></li>
+					<li><a href=\"../trabajos/trabajos.php\" class='important'>Trabajos Disponibles</a></li>
+					
+				</ul>
+			</div>
 			<p class='footer-details'>
 				FOTOS Y OBJETIVOS, S.L. con domicilio en la Calle Gran Vía de Colón, 23, 18001, Granada, Granada; CIF, B56363626 y nº de inscripción en el Registro Mercantil de Granada, Tomo 5743, Folio 298, SECCION  3,  Hoja número F-49643, inscripción 3º,es titular de esta web.
 				Para ver más información sobre el sitio pulsar <a href='../../info_page.php' class='important'>aquí</a>.

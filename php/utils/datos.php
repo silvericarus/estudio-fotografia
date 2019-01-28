@@ -68,8 +68,13 @@ $resul = mysqli_fetch_assoc($datos);
     					width: 200px;
     					height: 91px;
     					margin-top: -10px;">
-					<img src="../../img/stock.jpg" style="object-fit: scale-down; object-position: center; 
+    				<picture>
+  						<source srcset="../../img/stock.webp" type="image/webp">
+  						<source srcset="../../img/stock.jpg" type="image/jpeg"> 
+  						<img src="../../img/stock.jpg" alt="Imagen de usuario" style="object-fit: scale-down; object-position: center; 
 						width: inherit;">
+					</picture>
+					<img src="" >
 					</div>
 					<div style="display: flex; flex-direction: column; justify-content: center;align-items: center;">
 						<span class="badge badge-success">Cliente</span>

@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>http://silvericarus.000webhostapp.com/index.php</loc>
+  <lastmod>2019-01-26T17:53:03+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>http://silvericarus.000webhostapp.com/login.php</loc>
+  <lastmod>2019-01-26T17:53:03+00:00</lastmod>
+  <changefreq>never</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://silvericarus.000webhostapp.com/php/trabajos/trabajos.php?nouser=true</loc>
+  <lastmod>2019-01-26T17:53:03+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://silvericarus.000webhostapp.com/cookies_page.php</loc>
+  <lastmod>2019-01-26T17:53:03+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>http://silvericarus.000webhostapp.com/info_page.php</loc>
+  <lastmod>2019-01-26T17:53:03+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.70</priority>
+</url>
+
+
+</urlset>

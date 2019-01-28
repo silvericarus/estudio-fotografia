@@ -5,6 +5,8 @@ session_start();
 <html lang="es">
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="Description" content="Esta es la página del Estudio de Fotografía, donde podrás comprobar los trabajos que tenemos a la venta y posiblemente adquirir alguno.">
 	<title>Estudio de Fotografía</title>
 	<link rel="icon" href="img/logo.png" type="image/png" sizes="513x414">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
@@ -14,14 +16,13 @@ session_start();
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
 	<script type="text/javascript" src="js/scroll.js"></script>
-	<script type="text/javascript" src="js/mostrarAyuda.js"></script>
 	<link rel="stylesheet" href="css/main.css">
 </head>
 <body>
 	<div class="container-fluid">
 		<div class="row">
 				<?php
-					include 'php/conectarServidor.php';
+					include './php/conectarServidor.php';
 					$idUser = getId();
 					/**
 					 * Se llama a la función que crea el menú con / como parámetro 'ruta'
@@ -36,16 +37,16 @@ session_start();
     <div class="modal fade" id="modalCookies" tabindex="-1" role="dialog"
     aria-hidden="true">
   		<div class="modal-dialog" role="document">
-    		<div class="modal-content">
+    		<div class="modal-content bg-dark text-light">
       			<div class="modal-header">
         			<h5 class="modal-title" id="modalCookiesTitle">Política de aceptación
 de cookies</h5>
       			</div>
-      			<div class="modal-body">
+      			<div class="modal-body" aria-labelledby='modalCookiesTitle'>
         			Utilizamos cookies propias para mejorar nuestros servicios y mostrarle
 publicidad relacionada con sus preferencias mediante el análisis de sus hábitos de
 navegación. Si continua navegando, consideramos que acepta su uso. Puede obtener
-más información <a href="cookies_page.php">aquí</a>.
+más información <a href="cookies_page.php" class="important">aquí</a>.
       			</div>
       			<div class="modal-footer">
         			<button type="button" class="btn btn-danger" onclick="ClickRechazar()">Rechazar</button>
@@ -55,7 +56,6 @@ más información <a href="cookies_page.php">aquí</a>.
   		</div>
 	</div>
     <?php 
-    	mapaweb("/");
 		$conector = conectarServer();
 
 			$files = array_slice(scandir('./img/trabajos'), 2);
@@ -96,24 +96,24 @@ más información <a href="cookies_page.php">aquí</a>.
   </ol>
   <div class='carousel-inner'>
     <div class='carousel-item active itemcarousel'>
-      	<img class='d-block w-100 ' src='./img/trabajos/$files[$archivo1]' alt='First slide'>
+      	<img class='d-block w-100 ' src='./img/trabajos/$files[$archivo1]' alt='$resultado1[titulo]' role='img'>
       	<div class='carousel-caption d-none d-md-block caption'>
-    		<h5>$resultado1[titulo]</h5>
-    		<p>$resultado1[descripcion]</p>
+    		<h5 id='carouselTitle1'>$resultado1[titulo]</h5>
+    		<p aria-labelledby='carouselTitle1'>$resultado1[descripcion]</p>
   		</div>
     </div>
     <div class='carousel-item itemcarousel'>
-      	<img class='d-block w-100 ' src='./img/trabajos/$files[$archivo2]' alt='Second slide'>
+      	<img class='d-block w-100 ' src='./img/trabajos/$files[$archivo2]' alt='$resultado2[titulo]' role='img'>
       	<div class='carousel-caption d-none d-md-block caption'>
-    		<h5>$resultado2[titulo]</h5>
-    		<p>$resultado2[descripcion]</p>
+	    	<h5 id='carouselTitle2'>$resultado2[titulo]</h5>
+	    	<p aria-labelledby='carouselTitle2'>$resultado2[descripcion]</p>
   		</div>
     </div>
     <div class='carousel-item itemcarousel'>
-      	<img class='d-block w-100 ' src='./img/trabajos/$files[$archivo3]' alt='Third slide'>
+      	<img class='d-block w-100 ' src='./img/trabajos/$files[$archivo3]' alt='$resultado3[titulo]' role='img'>
       	<div class='carousel-caption d-none d-md-block caption'>
-    		<h5>$resultado3[titulo]</h5>
-    		<p>$resultado3[descripcion]</p>
+      		<h5 id='carouselTitle3'>$resultado3[titulo]</h5>
+    		<p aria-labelledby='carouselTitle3'>$resultado3[descripcion]</p>
   		</div>
     </div>
   </div>
@@ -140,20 +140,18 @@ más información <a href="cookies_page.php">aquí</a>.
 
 
 					$resultado = mysqli_fetch_array($datos,MYSQLI_ASSOC);
-
+					$x = 0;
 					while (!is_null($resultado)) {
-						echo "<div class='noticiap card'><img class='card-img-top' src='./img/noticias/$resultado[imagen]' alt='$resultado[titular]' width='250px'><div class='card-body'><h5 class='card-title'>$resultado[titular]</h5><a href='#' class='btn btn-light botonEditar' data-toggle='collapse' data-target='#contenidocollapse'>Ver</a></div><div class='card-body collapse' id='contenidocollapse'>$resultado[contenido]</div></div>";
+						echo "<div class='noticiap card' role='article' aria-labelledby='title$x'><img class='card-img-top' src='./img/noticias/$resultado[imagen]' alt='$resultado[titular]' width='250px' role='img'><div class='card-body'><h5 class='card-title' id='title$x'>$resultado[titular]</h5><a href='#' class='btn btn-light botonEditar' data-toggle='collapse' data-target='#contenidocollapse$x'>Ver</a></div><div class='card-body collapse' id='contenidocollapse$x'>$resultado[contenido]</div></div>";
 						$resultado = mysqli_fetch_array($datos,MYSQLI_ASSOC);
+						$x++;
 					}
 					mysqli_close($conector);
 				?>
 			</div>
 		</div>
 	</div>
-	<?php 
-		contextmenu('/');
-	?>
-	<button title="Ir arriba" class="scrollup">
+	<button title="Ir arriba" class="scrollup" role='button'>
         <i class="fas fa-chevron-up"></i>
     </button>
     	<?php 

@@ -1,6 +1,18 @@
 /*Inicio clientes.php*/
 @import url('https://fonts.googleapis.com/css?family=Amiri|Roboto');
 
+@font-face {
+  font-family: 'fa-solid';
+  font-display: fallback;
+  src: url(https://use.fontawesome.com/releases/v5.5.0/webfonts/fa-solid-900.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Amiri';
+  font-display: fallback;
+  src: url(https://fonts.gstatic.com/s/amiri/v12/J7aRnpd8CGxBHpUutLMS7JNK.woff2) format('woff2');
+}
+
 #searchbar{
 	box-shadow: 2px 2px 5px;
     background-color: #494949;
@@ -10,7 +22,7 @@
 }
 
 .content{
-    color: #faf6e9; 
+    color: #ffffff; 
     font-family: "Amiri",serif;
 }
 
@@ -331,4 +343,8 @@ section p,section li{
 }
 .important:hover{
 	color:#d4c058;
+}
+
+input[aria-invalid="true"]{
+  border: 3px solid #CA0000;
 }
